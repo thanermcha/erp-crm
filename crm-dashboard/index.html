@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrowERP CRM — Blah Software Segments</title>
+  <meta name="description" content="Dashboard CRM do GrowERP exibindo personas, landing pages e campanhas de outreach segmentadas para a Blah Software.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top bar -->
+  <header id="topbar">
+    <div class="topbar-left">
+      <div class="logo-mark">G</div>
+      <h1 class="topbar-title">GrowERP <span class="accent">CRM</span></h1>
+    </div>
+    <div class="topbar-center">
+      <span class="env-badge">branch: integracao</span>
+      <span class="env-badge staging">blahsoftware.ia.br</span>
+    </div>
+    <div class="topbar-right">
+      <span class="status-dot"></span>
+      <span class="status-text">Dados importados</span>
+    </div>
+  </header>
+
+  <!-- Navigation tabs -->
+  <nav id="main-nav" role="tablist">
+    <button class="nav-tab active" data-panel="overview" role="tab" id="tab-overview">Visão Geral</button>
+    <button class="nav-tab" data-panel="personas" role="tab" id="tab-personas">Personas</button>
+    <button class="nav-tab" data-panel="landing-pages" role="tab" id="tab-landing-pages">Landing Pages</button>
+    <button class="nav-tab" data-panel="campaigns" role="tab" id="tab-campaigns">Campanhas</button>
+    <button class="nav-tab" data-panel="messages" role="tab" id="tab-messages">Mensagens</button>
+  </nav>
+
+  <main id="content">
+
+    <!-- ====== OVERVIEW ====== -->
+    <section id="panel-overview" class="panel active" role="tabpanel">
+      <div class="stats-grid">
+        <div class="stat-card purple">
+          <div class="stat-icon">👤</div>
+          <div class="stat-value">6</div>
+          <div class="stat-label">Personas</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-icon">🌐</div>
+          <div class="stat-value">6</div>
+          <div class="stat-label">Landing Pages</div>
+        </div>
+        <div class="stat-card teal">
+          <div class="stat-icon">📣</div>
+          <div class="stat-value">6</div>
+          <div class="stat-label">Campanhas</div>
+        </div>
+        <div class="stat-card orange">
+          <div class="stat-icon">📱</div>
+          <div class="stat-value">12</div>
+          <div class="stat-label">Templates WhatsApp + Email</div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Mapa de Segmentos → Subdomínios</h2>
+      <div class="segment-map" id="segment-map"></div>
+
+      <h2 class="section-title">Pipeline de Integração</h2>
+      <div class="pipeline">
+        <div class="pipe-step"><div class="pipe-num">1</div><div class="pipe-text"><strong>Ingestão</strong><br>Webhooks HubSpot / WordPress → <code>source_records</code></div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="pipe-num">2</div><div class="pipe-text"><strong>Higienização</strong><br>E.164, regex e-mail, limpeza CNPJ/Ltda</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="pipe-num">3</div><div class="pipe-text"><strong>Deduplicação</strong><br>Match e-mail → telefone → domínio+empresa</div></div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step"><div class="pipe-num">4</div><div class="pipe-text"><strong>Gravação</strong><br>REST API → GrowERP (<code>partyId</code> + <code>syncDate</code>)</div></div>
+      </div>
+    </section>
+
+    <!-- ====== PERSONAS ====== -->
+    <section id="panel-personas" class="panel" role="tabpanel">
+      <h2 class="section-title">Personas de Marketing — Blah Software</h2>
+      <div class="cards-grid" id="personas-grid"></div>
+    </section>
+
+    <!-- ====== LANDING PAGES ====== -->
+    <section id="panel-landing-pages" class="panel" role="tabpanel">
+      <h2 class="section-title">Landing Pages por Segmento</h2>
+      <div class="lp-grid" id="lp-grid"></div>
+    </section>
+
+    <!-- ====== CAMPAIGNS ====== -->
+    <section id="panel-campaigns" class="panel" role="tabpanel">
+      <h2 class="section-title">Campanhas de Outreach — WhatsApp &amp; Email</h2>
+      <div class="campaign-table-wrap">
+        <table class="campaign-table" id="campaign-table">
+          <thead>
+            <tr>
+              <th>Campanha</th>
+              <th>Segmento</th>
+              <th>Plataformas</th>
+              <th>Público-alvo</th>
+              <th>Status</th>
+              <th>Limite diário</th>
+              <th>Landing Page</th>
+            </tr>
+          </thead>
+          <tbody id="campaign-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ====== MESSAGES ====== -->
+    <section id="panel-messages" class="panel" role="tabpanel">
+      <h2 class="section-title">Templates de Mensagem por Segmento</h2>
+      <div class="msg-filter-bar">
+        <button class="msg-filter active" data-channel="all" id="filter-all">Todos</button>
+        <button class="msg-filter" data-channel="whatsapp" id="filter-whatsapp">📱 WhatsApp</button>
+        <button class="msg-filter" data-channel="email" id="filter-email">📧 Email</button>
+      </div>
+      <div class="msg-grid" id="msg-grid"></div>
+    </section>
+
+  </main>
+
+  <footer id="main-footer">
+    <span>GrowERP × Freela-SDR Integration — branch <strong>integracao</strong></span>
+    <span>blahsoftware.ia.br</span>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
