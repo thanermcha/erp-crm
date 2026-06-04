@@ -38,6 +38,7 @@ Future<bool> login(
           newPassword: password,
           firstName: 'admin',
           lastName: 'user',
+          userGroup: UserGroup.admin,
         );
       } else {
         print(

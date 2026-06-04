@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Freela-SDR / GrowERP CRM normalized seed data.
+This file adds segment-specific personas, landing pages, credibility blocks,
+and campaign drafts for the Blah Software audiences.
+-->
+<entity-facade-xml type="demo">
+
+  <!-- Personas -->
+  <growerp.marketing.MarketingPersona
+    personaId="BLAH_PERSONA_AGRO"
+    pseudoId="blah-agro-persona"
+    ownerPartyId="DEMO"
+    name="Agronegocio Decision Maker"
+    demographics="Owners and managers of agribusiness operations that need clearer lead flow, follow-up, and conversion tracking."
+    painPoints="Disorganized lead intake, slow response times, manual WhatsApp follow-up, and weak attribution between campaigns and sales."
+    goals="Capture qualified leads faster, route them to the right segment page, and keep every follow-up measurable."
+    toneOfVoice="Direct, practical, operational, and focused on profit and speed."
+    createdDate="2026-06-03 00:00:00"
+    lastModifiedDate="2026-06-03 00:00:00" />
+
+  <growerp.marketing.MarketingPersona
+    personaId="BLAH_PERSONA_AGENTS"
+    pseudoId="blah-agents-persona"
+    ownerPartyId="DEMO"
+    name="Agency Growth Lead"
+    demographics="Owners and operators of lead generation agencies that need repeatable delivery and visible pipeline health."
+    painPoints="Campaign chaos, duplicated contacts, inconsistent messaging, and no clear separation between clients or squads."
+    goals="Standardize outreach, keep tenants isolated, and present clear next steps for every prospect."
+    toneOfVoice="Professional, concise, and performance-oriented."
+    createdDate="2026-06-03 00:00:00"
+    lastModifiedDate="2026-06-03 00:00:00" />
+
+  <growerp.marketing.MarketingPersona
+    personaId="BLAH_PERSONA_ENTERPRISE"
+    pseudoId="blah-enterprise-persona"
+    ownerPartyId="DEMO"
+    name="Enterprise Revenue Operations"
+    demographics="Enterprise teams that require governance, segmentation, and predictable reporting across channels."
+    painPoints="Fragmented workflows, manual data hygiene, and poor visibility into campaign performance."
+    goals="Create controlled landing pages, segment-specific journeys, and auditable activity histories."
+    toneOfVoice="Structured, confident, and evidence-driven."
+    createdDate="2026-06-03 00:00:00"
+    lastModifiedDate="2026-06-03 00:00:00" />
+
+  <growerp.marketing.MarketingPersona
+    personaId="BLAH_PERSONA_BUSINESS"
+    pseudoId="blah-business-persona"
+    ownerPartyId="DEMO"
+    name="SMB Business Owner"
+    demographics="Small and mid-sized business owners that need a clear, low-friction CRM entry point."
+    painPoints="Too many tools, little consistency, and no clean handoff from lead to opportunity."
+    goals="Get a simple path from form submission to follow-up with measurable outcomes."
+    toneOfVoice="Friendly, clear, and outcome-focused."
+    createdDate="2026-06-03 00:00:00"
+    lastModifiedDate="2026-06-03 00:00:00" />
+
+  <growerp.marketing.MarketingPersona
+    personaId="BLAH_PERSONA_FRANQUIA"
+    pseudoId="blah-franquia-persona"
+    ownerPartyId="DEMO"
+    name="Franchise Expansion Lead"
+    demographics="Franchise owners and expansion managers who need consistent messaging and distributed lead handling."
+    painPoints="Hard to keep brand consistency across units, difficult to track inquiries, and slow qualification."
+    goals="Unify the funnel, split by region or segment, and keep every inquiry traceable."
+    toneOfVoice="Clear, practical, and scalable."
+    createdDate="2026-06-03 00:00:00"
+    lastModifiedDate="2026-06-03 00:00:00" />
+
+  <growerp.marketing.MarketingPersona
+    personaId="BLAH_PERSONA_SOLUCOES"
+    pseudoId="blah-solucoes-persona"
+    ownerPartyId="DEMO"
+    name="Solutions Buyer"
+    demographics="Decision makers searching for specific solutions and wanting a direct next step."
+    painPoints="Generic pitches, unclear value propositions, and landing pages that do not match intent."
+    goals="Match content to intent, route leads by segment, and present a short conversion path."
+    toneOfVoice="Concise, helpful, and solution-oriented."
+    createdDate="2026-06-03 00:00:00"
+    lastModifiedDate="2026-06-03 00:00:00" />
+
+  <!-- Landing pages -->
+  <growerp.landing.LandingPage
+    landingPageId="BLAH_LP_AGRO"
+    pseudoId="blah-agro-lp"
+    ownerPartyId="DEMO"
+    title="Agronegocio | Blah Software"
+    hookType="results"
+    headline="More qualified agribusiness leads, with follow-up that does not get lost."
+    subheading="A dedicated page for agribusiness visitors, with a short path to WhatsApp and e-mail contact, backed by clear routing and measurement."
+    status="ACTIVE"
+    privacyPolicyUrl="https://blahsoftware.ia.br/privacy"
+    ctaActionType="url"
+    ctaButtonLink="https://agronegocio.blahsoftware.ia.br"
+    createdDate="2026-06-03 00:00:00"
+    createdByUserLogin="admin"
+    lastModifiedDate="2026-06-03 00:00:00"
+    lastModifiedByUserLogin="admin" />
+
+  <growerp.landing.LandingPage
+    landingPageId="BLAH_LP_AGENTS"
+    pseudoId="blah-agents-lp"
+    ownerPartyId="DEMO"
+    title="Agents | Blah Software"
+    hookType="problem"
+    headline="Segmented outreach for agencies that need clean delivery and clean reporting."
+    subheading="A landing page designed for agencies, with separate journeys for each audience and an easier handoff into CRM."
+    status="ACTIVE"
+    privacyPolicyUrl="https://blahsoftware.ia.br/privacy"
+    ctaActionType="url"
+    ctaButtonLink="https://agents.blahsoftware.com.br"
+    createdDate="2026-06-03 00:00:00"
+    createdByUserLogin="admin"
+    lastModifiedDate="2026-06-03 00:00:00"
+    lastModifiedByUserLogin="admin" />
+
+  <growerp.landing.LandingPage
+    landingPageId="BLAH_LP_ENTERPRISE"
+    pseudoId="blah-enterprise-lp"
+    ownerPartyId="DEMO"
+    title="Enterprise | Blah Software"
+    hookType="results"
+    headline="Governed, auditable segment pages for enterprise demand generation."
+    subheading="Built for teams that need a controlled funnel, consistent messaging, and traceable pipeline attribution."
+    status="ACTIVE"
+    privacyPolicyUrl="https://blahsoftware.ia.br/privacy"
+    ctaActionType="url"
+    ctaButtonLink="https://enterprise.blahsoftware.ia.br"
+    createdDate="2026-06-03 00:00:00"
+    createdByUserLogin="admin"
+    lastModifiedDate="2026-06-03 00:00:00"
+    lastModifiedByUserLogin="admin" />
+
+  <growerp.landing.LandingPage
+    landingPageId="BLAH_LP_BUSINESS"
+    pseudoId="blah-business-lp"
+    ownerPartyId="DEMO"
+    title="Business | Blah Software"
+    hookType="problem"
+    headline="A simple CRM path for businesses that want more response and less manual work."
+    subheading="This page keeps the journey short: interest, contact, qualification, and follow-up."
+    status="ACTIVE"
+    privacyPolicyUrl="https://blahsoftware.ia.br/privacy"
+    ctaActionType="url"
+    ctaButtonLink="https://business.blahsoftware.ia.br"
+    createdDate="2026-06-03 00:00:00"
+    createdByUserLogin="admin"
+    lastModifiedDate="2026-06-03 00:00:00"
+    lastModifiedByUserLogin="admin" />
+
+  <growerp.landing.LandingPage
+    landingPageId="BLAH_LP_FRANQUIA"
+    pseudoId="blah-franquia-lp"
+    ownerPartyId="DEMO"
+    title="Franquia | Blah Software"
+    hookType="results"
+    headline="Standardize franchise inquiries without losing local context."
+    subheading="A page built for franchise expansion, regional routing, and consistent follow-up across units."
+    status="ACTIVE"
+    privacyPolicyUrl="https://blahsoftware.ia.br/privacy"
+    ctaActionType="url"
+    ctaButtonLink="https://franquia.blahsoftware.ia.br"
+    createdDate="2026-06-03 00:00:00"
+    createdByUserLogin="admin"
+    lastModifiedDate="2026-06-03 00:00:00"
+    lastModifiedByUserLogin="admin" />
+
+  <growerp.landing.LandingPage
+    landingPageId="BLAH_LP_SOLUCOES"
+    pseudoId="blah-solucoes-lp"
+    ownerPartyId="DEMO"
+    title="Solucoes | Blah Software"
+    hookType="results"
+    headline="Route each intent to the right message, page, and follow-up."
+    subheading="A practical entry point for visitors who already know the category they need and want a direct answer."
+    status="ACTIVE"
+    privacyPolicyUrl="https://blahsoftware.ia.br/privacy"
+    ctaActionType="url"
+    ctaButtonLink="https://solucoes.blahsoftware.ia.br"
+    createdDate="2026-06-03 00:00:00"
+    createdByUserLogin="admin"
+    lastModifiedDate="2026-06-03 00:00:00"
+    lastModifiedByUserLogin="admin" />
+
+  <!-- Landing page sections -->
+  <growerp.landing.PageSection
+    pageSectionId="BLAH_AGRO_SEC_1"
+    pseudoId="blah-agro-sec-1"
+    landingPageId="BLAH_LP_AGRO"
+    sectionSequence="1"
+    sectionTitle="Why agribusiness leads get lost"
+    sectionDescription="This page captures the main agribusiness pain points: slow response, scattered contact history, and weak attribution."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.PageSection
+    pageSectionId="BLAH_AGRO_SEC_2"
+    pseudoId="blah-agro-sec-2"
+    landingPageId="BLAH_LP_AGRO"
+    sectionSequence="2"
+    sectionTitle="Fast follow-up path"
+    sectionDescription="Lead into a short WhatsApp or e-mail follow-up that is easy to measure inside the CRM."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.PageSection
+    pageSectionId="BLAH_AGENTS_SEC_1"
+    pseudoId="blah-agents-sec-1"
+    landingPageId="BLAH_LP_AGENTS"
+    sectionSequence="1"
+    sectionTitle="Agency delivery control"
+    sectionDescription="Agencies need separate journeys for different audiences, with less duplication and more visibility."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.PageSection
+    pageSectionId="BLAH_AGENTS_SEC_2"
+    pseudoId="blah-agents-sec-2"
+    landingPageId="BLAH_LP_AGENTS"
+    sectionSequence="2"
+    sectionTitle="Segmented handoff"
+    sectionDescription="Each lead is routed to the right owner, so the team can follow up without mixing client data."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.PageSection
+    pageSectionId="BLAH_ENT_SEC_1"
+    pseudoId="blah-enterprise-sec-1"
+    landingPageId="BLAH_LP_ENTERPRISE"
+    sectionSequence="1"
+    sectionTitle="Controlled demand generation"
+    sectionDescription="Enterprise teams get a governed path from campaign entry to CRM record creation."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.PageSection
+    pageSectionId="BLAH_ENT_SEC_2"
+    pseudoId="blah-enterprise-sec-2"
+    landingPageId="BLAH_LP_ENTERPRISE"
+    sectionSequence="2"
+    sectionTitle="Audit-friendly journey"
+    sectionDescription="The messaging sequence stays short, explicit, and traceable for reporting."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.PageSection
+    pageSectionId="BLAH_BUS_SEC_1"
+    pseudoId="blah-business-sec-1"
+    landingPageId="BLAH_LP_BUSINESS"
+    sectionSequence="1"
+    sectionTitle="Low-friction CRM entry"
+    sectionDescription="Designed for businesses that want to capture interest and move quickly to qualification."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.PageSection
+    pageSectionId="BLAH_BUS_SEC_2"
+    pseudoId="blah-business-sec-2"
+    landingPageId="BLAH_LP_BUSINESS"
+    sectionSequence="2"
+    sectionTitle="Clear next step"
+    sectionDescription="The visitor sees one simple next action instead of a long or noisy flow."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.PageSection
+    pageSectionId="BLAH_FRANQUIA_SEC_1"
+    pseudoId="blah-franquia-sec-1"
+    landingPageId="BLAH_LP_FRANQUIA"
+    sectionSequence="1"
+    sectionTitle="Consistent franchise messaging"
+    sectionDescription="Franchises need a repeatable pitch that still respects regional context."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.PageSection
+    pageSectionId="BLAH_FRANQUIA_SEC_2"
+    pseudoId="blah-franquia-sec-2"
+    landingPageId="BLAH_LP_FRANQUIA"
+    sectionSequence="2"
+    sectionTitle="Local routing, central control"
+    sectionDescription="Every lead is routed cleanly while the main team keeps reporting and governance."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.PageSection
+    pageSectionId="BLAH_SOLUCOES_SEC_1"
+    pseudoId="blah-solucoes-sec-1"
+    landingPageId="BLAH_LP_SOLUCOES"
+    sectionSequence="1"
+    sectionTitle="Match intent to solution"
+    sectionDescription="Visitors who already know what they want should see a direct path, not a generic pitch."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.PageSection
+    pageSectionId="BLAH_SOLUCOES_SEC_2"
+    pseudoId="blah-solucoes-sec-2"
+    landingPageId="BLAH_LP_SOLUCOES"
+    sectionSequence="2"
+    sectionTitle="Short path to contact"
+    sectionDescription="The page keeps the journey short and focused on conversion."
+    createdDate="2026-06-03 00:00:00" />
+
+  <!-- Credibility blocks -->
+  <growerp.landing.CredibilityInfo
+    credibilityInfoId="BLAH_AGRO_CRED"
+    pseudoId="blah-agro-cred"
+    landingPageId="BLAH_LP_AGRO"
+    creatorBio="Blah Software combines CRM structure, segmentation, and automation to help agribusiness teams keep pace with demand."
+    backgroundText="This page is built for teams that need cleaner routing, better follow-up, and a more reliable path from interest to contact."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityStatistic
+    credibilityStatisticId="BLAH_AGRO_STAT_1"
+    pseudoId="blah-agro-stat-1"
+    credibilityInfoId="BLAH_AGRO_CRED"
+    statistic="Faster response times reduce lead drop-off."
+    sequence="1"
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityStatistic
+    credibilityStatisticId="BLAH_AGRO_STAT_2"
+    pseudoId="blah-agro-stat-2"
+    credibilityInfoId="BLAH_AGRO_CRED"
+    statistic="Segment-specific pages improve campaign attribution."
+    sequence="2"
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityInfo
+    credibilityInfoId="BLAH_AGENTS_CRED"
+    pseudoId="blah-agents-cred"
+    landingPageId="BLAH_LP_AGENTS"
+    creatorBio="Agency teams use the same CRM backbone to keep client data isolated and delivery measurable."
+    backgroundText="This page focuses on segmentation, repeatability, and a clean operational handoff between marketing and sales."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityStatistic
+    credibilityStatisticId="BLAH_AGENTS_STAT_1"
+    pseudoId="blah-agents-stat-1"
+    credibilityInfoId="BLAH_AGENTS_CRED"
+    statistic="Structured follow-up reduces duplicated contact effort."
+    sequence="1"
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityStatistic
+    credibilityStatisticId="BLAH_AGENTS_STAT_2"
+    pseudoId="blah-agents-stat-2"
+    credibilityInfoId="BLAH_AGENTS_CRED"
+    statistic="Tenant separation keeps client work auditable."
+    sequence="2"
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityInfo
+    credibilityInfoId="BLAH_ENTERPRISE_CRED"
+    pseudoId="blah-enterprise-cred"
+    landingPageId="BLAH_LP_ENTERPRISE"
+    creatorBio="Enterprise workflows need clear governance, simple routing, and audit-friendly messaging."
+    backgroundText="This page is built to support controlled demand generation and a predictable transition into the CRM."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityStatistic
+    credibilityStatisticId="BLAH_ENTERPRISE_STAT_1"
+    pseudoId="blah-enterprise-stat-1"
+    credibilityInfoId="BLAH_ENTERPRISE_CRED"
+    statistic="Controlled journeys reduce noise in enterprise pipelines."
+    sequence="1"
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityStatistic
+    credibilityStatisticId="BLAH_ENTERPRISE_STAT_2"
+    pseudoId="blah-enterprise-stat-2"
+    credibilityInfoId="BLAH_ENTERPRISE_CRED"
+    statistic="Clear audit trails improve internal confidence."
+    sequence="2"
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityInfo
+    credibilityInfoId="BLAH_BUSINESS_CRED"
+    pseudoId="blah-business-cred"
+    landingPageId="BLAH_LP_BUSINESS"
+    creatorBio="Small and mid-sized businesses benefit from a short, direct path into CRM and follow-up."
+    backgroundText="The page keeps the offer simple, the next step obvious, and the messaging aligned to fast action."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityStatistic
+    credibilityStatisticId="BLAH_BUSINESS_STAT_1"
+    pseudoId="blah-business-stat-1"
+    credibilityInfoId="BLAH_BUSINESS_CRED"
+    statistic="Short forms usually convert better than noisy journeys."
+    sequence="1"
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityStatistic
+    credibilityStatisticId="BLAH_BUSINESS_STAT_2"
+    pseudoId="blah-business-stat-2"
+    credibilityInfoId="BLAH_BUSINESS_CRED"
+    statistic="Clear CTAs improve the handoff into the CRM."
+    sequence="2"
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityInfo
+    credibilityInfoId="BLAH_FRANQUIA_CRED"
+    pseudoId="blah-franquia-cred"
+    landingPageId="BLAH_LP_FRANQUIA"
+    creatorBio="Franchise operations need consistent messaging with local routing and central control."
+    backgroundText="This page focuses on expanding the funnel without losing brand consistency or operational visibility."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityStatistic
+    credibilityStatisticId="BLAH_FRANQUIA_STAT_1"
+    pseudoId="blah-franquia-stat-1"
+    credibilityInfoId="BLAH_FRANQUIA_CRED"
+    statistic="Central control keeps franchise messaging consistent."
+    sequence="1"
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityStatistic
+    credibilityStatisticId="BLAH_FRANQUIA_STAT_2"
+    pseudoId="blah-franquia-stat-2"
+    credibilityInfoId="BLAH_FRANQUIA_CRED"
+    statistic="Local routing keeps leads close to the right unit."
+    sequence="2"
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityInfo
+    credibilityInfoId="BLAH_SOLUCOES_CRED"
+    pseudoId="blah-solucoes-cred"
+    landingPageId="BLAH_LP_SOLUCOES"
+    creatorBio="Solution-led pages work best when intent, message, and next action are aligned."
+    backgroundText="This page is designed for visitors who already know the category they need and want a direct route to contact."
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityStatistic
+    credibilityStatisticId="BLAH_SOLUCOES_STAT_1"
+    pseudoId="blah-solucoes-stat-1"
+    credibilityInfoId="BLAH_SOLUCOES_CRED"
+    statistic="Intent-matched pages usually convert better."
+    sequence="1"
+    createdDate="2026-06-03 00:00:00" />
+
+  <growerp.landing.CredibilityStatistic
+    credibilityStatisticId="BLAH_SOLUCOES_STAT_2"
+    pseudoId="blah-solucoes-stat-2"
+    credibilityInfoId="BLAH_SOLUCOES_CRED"
+    statistic="A short funnel reduces friction."
+    sequence="2"
+    createdDate="2026-06-03 00:00:00" />
+
+  <!-- Campaign drafts -->
+  <mantle.marketing.campaign.MarketingCampaign
+    marketingCampaignId="BLAH_CAMP_AGRO"
+    pseudoId="blah-agro-campaign"
+    ownerPartyId="DEMO"
+    campaignName="Blah Agro - WhatsApp and Email"
+    campaignSummary="Segmented outreach for agribusiness buyers with a dedicated landing page."
+    platforms="[&quot;EMAIL&quot;,&quot;WHATSAPP&quot;]"
+    targetAudience="Agribusiness owners, managers, and commercial leads"
+    landingPageId="BLAH_LP_AGRO"
+    messageTemplate="Oi {{firstName}}, criamos uma pagina focada em agronegocio para reduzir perda de leads e organizar o follow-up."
+    emailSubject="Agronegocio: sua nova pagina de conversao"
+    platformSettings="{&quot;email&quot;:{&quot;cta&quot;:&quot;https://agronegocio.blahsoftware.ia.br&quot;},&quot;whatsapp&quot;:{&quot;message&quot;:&quot;Mensagem curta, direta e personalizada para agronegocio.&quot;}}"
+    statusId="MKTG_CAMP_PLANNED"
+    dailyLimitPerPlatform="25"
+    fromDate="2026-06-03 00:00:00"
+    isActive="N"
+    createdByUserLogin="admin"
+    lastModifiedByUserLogin="admin" />
+
+  <mantle.marketing.campaign.MarketingCampaign
+    marketingCampaignId="BLAH_CAMP_AGENTS"
+    pseudoId="blah-agents-campaign"
+    ownerPartyId="DEMO"
+    campaignName="Blah Agents - WhatsApp and Email"
+    campaignSummary="Agency outreach with client isolation and a dedicated landing path."
+    platforms="[&quot;EMAIL&quot;,&quot;WHATSAPP&quot;]"
+    targetAudience="Agency owners and operations leads"
+    landingPageId="BLAH_LP_AGENTS"
+    messageTemplate="Oi {{firstName}}, sua agencia pode trabalhar com paginas separadas por segmento e com follow-up rastreavel."
+    emailSubject="Agencia: pagina segmentada para sua operacao"
+    platformSettings="{&quot;email&quot;:{&quot;cta&quot;:&quot;https://agents.blahsoftware.com.br&quot;},&quot;whatsapp&quot;:{&quot;message&quot;:&quot;Mensagem curta para agencias e squads.&quot;}}"
+    statusId="MKTG_CAMP_PLANNED"
+    dailyLimitPerPlatform="25"
+    fromDate="2026-06-03 00:00:00"
+    isActive="N"
+    createdByUserLogin="admin"
+    lastModifiedByUserLogin="admin" />
+
+  <mantle.marketing.campaign.MarketingCampaign
+    marketingCampaignId="BLAH_CAMP_ENTERPRISE"
+    pseudoId="blah-enterprise-campaign"
+    ownerPartyId="DEMO"
+    campaignName="Blah Enterprise - WhatsApp and Email"
+    campaignSummary="Enterprise demand generation with governance and audit-friendly copy."
+    platforms="[&quot;EMAIL&quot;,&quot;WHATSAPP&quot;]"
+    targetAudience="Enterprise revenue operations and commercial teams"
+    landingPageId="BLAH_LP_ENTERPRISE"
+    messageTemplate="Oi {{firstName}}, montamos um fluxo com pagina segmentada e trilha clara para o time comercial."
+    emailSubject="Enterprise: fluxo segmentado e auditavel"
+    platformSettings="{&quot;email&quot;:{&quot;cta&quot;:&quot;https://enterprise.blahsoftware.ia.br&quot;},&quot;whatsapp&quot;:{&quot;message&quot;:&quot;Mensagem objetiva para enterprise.&quot;}}"
+    statusId="MKTG_CAMP_PLANNED"
+    dailyLimitPerPlatform="25"
+    fromDate="2026-06-03 00:00:00"
+    isActive="N"
+    createdByUserLogin="admin"
+    lastModifiedByUserLogin="admin" />
+
+  <mantle.marketing.campaign.MarketingCampaign
+    marketingCampaignId="BLAH_CAMP_BUSINESS"
+    pseudoId="blah-business-campaign"
+    ownerPartyId="DEMO"
+    campaignName="Blah Business - WhatsApp and Email"
+    campaignSummary="Small business entry flow with a short route from interest to contact."
+    platforms="[&quot;EMAIL&quot;,&quot;WHATSAPP&quot;]"
+    targetAudience="SMB owners and operators"
+    landingPageId="BLAH_LP_BUSINESS"
+    messageTemplate="Oi {{firstName}}, deixamos seu caminho mais simples para capturar contatos e responder mais rapido."
+    emailSubject="Business: menos friccao, mais respostas"
+    platformSettings="{&quot;email&quot;:{&quot;cta&quot;:&quot;https://business.blahsoftware.ia.br&quot;},&quot;whatsapp&quot;:{&quot;message&quot;:&quot;Mensagem curta para SMB.&quot;}}"
+    statusId="MKTG_CAMP_PLANNED"
+    dailyLimitPerPlatform="25"
+    fromDate="2026-06-03 00:00:00"
+    isActive="N"
+    createdByUserLogin="admin"
+    lastModifiedByUserLogin="admin" />
+
+  <mantle.marketing.campaign.MarketingCampaign
+    marketingCampaignId="BLAH_CAMP_FRANQUIA"
+    pseudoId="blah-franquia-campaign"
+    ownerPartyId="DEMO"
+    campaignName="Blah Franquia - WhatsApp and Email"
+    campaignSummary="Franchise expansion with local routing and centralized visibility."
+    platforms="[&quot;EMAIL&quot;,&quot;WHATSAPP&quot;]"
+    targetAudience="Franchise expansion managers"
+    landingPageId="BLAH_LP_FRANQUIA"
+    messageTemplate="Oi {{firstName}}, sua franquia pode centralizar o funil sem perder o contexto local."
+    emailSubject="Franquia: funil central e local ao mesmo tempo"
+    platformSettings="{&quot;email&quot;:{&quot;cta&quot;:&quot;https://franquia.blahsoftware.ia.br&quot;},&quot;whatsapp&quot;:{&quot;message&quot;:&quot;Mensagem curta para franquias.&quot;}}"
+    statusId="MKTG_CAMP_PLANNED"
+    dailyLimitPerPlatform="25"
+    fromDate="2026-06-03 00:00:00"
+    isActive="N"
+    createdByUserLogin="admin"
+    lastModifiedByUserLogin="admin" />
+
+  <mantle.marketing.campaign.MarketingCampaign
+    marketingCampaignId="BLAH_CAMP_SOLUCOES"
+    pseudoId="blah-solucoes-campaign"
+    ownerPartyId="DEMO"
+    campaignName="Blah Solucoes - WhatsApp and Email"
+    campaignSummary="Solution-led page with a direct message and a clean conversion path."
+    platforms="[&quot;EMAIL&quot;,&quot;WHATSAPP&quot;]"
+    targetAudience="Intent-led buyers"
+    landingPageId="BLAH_LP_SOLUCOES"
+    messageTemplate="Oi {{firstName}}, se voce ja sabe o que precisa, esta pagina leva direto ao contato certo."
+    emailSubject="Solucoes: caminho direto para conversao"
+    platformSettings="{&quot;email&quot;:{&quot;cta&quot;:&quot;https://solucoes.blahsoftware.ia.br&quot;},&quot;whatsapp&quot;:{&quot;message&quot;:&quot;Mensagem curta para intent/solucoes.&quot;}}"
+    statusId="MKTG_CAMP_PLANNED"
+    dailyLimitPerPlatform="25"
+    fromDate="2026-06-03 00:00:00"
+    isActive="N"
+    createdByUserLogin="admin"
+    lastModifiedByUserLogin="admin" />
+
+</entity-facade-xml>
