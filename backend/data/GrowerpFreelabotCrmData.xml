@@ -10,7 +10,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.marketing.MarketingPersona
     personaId="BLAH_PERSONA_AGRO"
     pseudoId="blah-agro-persona"
-    ownerPartyId="_NA_"
+    ownerPartyId="BLAH_SOFTWARE"
     name="Agronegocio Decision Maker"
     demographics="Owners and managers of agribusiness operations that need clearer lead flow, follow-up, and conversion tracking."
     painPoints="Disorganized lead intake, slow response times, manual WhatsApp follow-up, and weak attribution between campaigns and sales."
@@ -22,7 +22,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.marketing.MarketingPersona
     personaId="BLAH_PERSONA_AGENTS"
     pseudoId="blah-agents-persona"
-    ownerPartyId="_NA_"
+    ownerPartyId="BLAH_SOFTWARE"
     name="Agency Growth Lead"
     demographics="Owners and operators of lead generation agencies that need repeatable delivery and visible pipeline health."
     painPoints="Campaign chaos, duplicated contacts, inconsistent messaging, and no clear separation between clients or squads."
@@ -34,7 +34,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.marketing.MarketingPersona
     personaId="BLAH_PERSONA_ENTERPRISE"
     pseudoId="blah-enterprise-persona"
-    ownerPartyId="_NA_"
+    ownerPartyId="BLAH_SOFTWARE"
     name="Enterprise Revenue Operations"
     demographics="Enterprise teams that require governance, segmentation, and predictable reporting across channels."
     painPoints="Fragmented workflows, manual data hygiene, and poor visibility into campaign performance."
@@ -46,7 +46,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.marketing.MarketingPersona
     personaId="BLAH_PERSONA_BUSINESS"
     pseudoId="blah-business-persona"
-    ownerPartyId="_NA_"
+    ownerPartyId="BLAH_SOFTWARE"
     name="SMB Business Owner"
     demographics="Small and mid-sized business owners that need a clear, low-friction CRM entry point."
     painPoints="Too many tools, little consistency, and no clean handoff from lead to opportunity."
@@ -58,7 +58,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.marketing.MarketingPersona
     personaId="BLAH_PERSONA_FRANQUIA"
     pseudoId="blah-franquia-persona"
-    ownerPartyId="_NA_"
+    ownerPartyId="BLAH_SOFTWARE"
     name="Franchise Expansion Lead"
     demographics="Franchise owners and expansion managers who need consistent messaging and distributed lead handling."
     painPoints="Hard to keep brand consistency across units, difficult to track inquiries, and slow qualification."
@@ -70,7 +70,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.marketing.MarketingPersona
     personaId="BLAH_PERSONA_SOLUCOES"
     pseudoId="blah-solucoes-persona"
-    ownerPartyId="_NA_"
+    ownerPartyId="BLAH_SOFTWARE"
     name="Solutions Buyer"
     demographics="Decision makers searching for specific solutions and wanting a direct next step."
     painPoints="Generic pitches, unclear value propositions, and landing pages that do not match intent."
@@ -83,7 +83,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.landing.LandingPage
     landingPageId="BLAH_LP_AGRO"
     pseudoId="blah-agro-lp"
-    ownerPartyId="_NA_"
+    ownerPartyId="BLAH_SOFTWARE"
     title="Agronegocio | Blah Software"
     hookType="results"
     headline="More qualified agribusiness leads, with follow-up that does not get lost."

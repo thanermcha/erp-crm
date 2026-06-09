@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Seed data to create the BLAH_SOFTWARE tenant (organization) and a
+  minimal admin user for local development.
+-->
+<entity-facade-xml type="seed">
+
+  <!-- Organization / Tenant -->
+  <mantle.party.Party partyId="BLAH_SOFTWARE" pseudoId="BLAH_SOFT" partyTypeEnumId="PtyOrganization" ownerPartyId="BLAH_SOFTWARE" />
+  <mantle.party.Organization partyId="BLAH_SOFTWARE" organizationName="Blah Software" />
+  <mantle.party.PartyRole partyId="BLAH_SOFTWARE" roleTypeId="OrgInternal" />
+
+  <!-- Company classification so seeds can reference ownerPartyId=BLAH_SOFTWARE -->
+  <mantle.party.PartyClassificationAppl partyId="BLAH_SOFTWARE" partyClassificationId="CustomerCompany" fromDate="1265184000000" />
+
+  <!-- Minimal tenant admin user (password: moqui) -->
+  <mantle.party.Party partyId="BLAH_SOFT_ADMIN" partyTypeEnumId="PtyPerson" />
+  <mantle.party.Person partyId="BLAH_SOFT_ADMIN" firstName="Blah" lastName="Admin" />
+  <moqui.security.UserAccount userId="BLAH_SOFT_ADMIN" username="blahadmin" userFullName="Blah Admin"
+      currentPassword="16ac58bbfa332c1c55bd98b53e60720bfa90d394" passwordHashType="SHA"
+      partyId="BLAH_SOFT_ADMIN" emailAddress="admin@blahsoftware.ia.br" locale="pt_BR" timeZone="America/Belem" />
+  <moqui.security.UserGroupMember userGroupId="ADMIN" userId="BLAH_SOFT_ADMIN" fromDate="1265184000000" />
+  <mantle.party.PartyRelationship partyRelationshipId="BLAH_SOFT_ADMIN_REL" relationshipTypeEnumId="PrtOrgStaff"
+      fromPartyId="BLAH_SOFT_ADMIN" toPartyId="BLAH_SOFTWARE" fromDate="1265184000000" />
+
+</entity-facade-xml>
