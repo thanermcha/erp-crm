@@ -1,18 +1,20 @@
 # How to Clear Browser Cache and Service Worker
 
-After deploying the updated admin web app, you need to clear the browser cache and service worker to see the changes.
+Use this after the local machine already resolves `*.growerp.local` and trusts
+`docker/certs/growerp.local.crt`. Cache cleanup helps with stale Flutter
+assets, but it does not fix missing DNS/hosts entries or TLS trust failures.
 
 ## Quick Method (Recommended)
 
 ### Chrome/Edge/Brave
-1. Open the admin app: `http://localhost:8080/admin/`
+1. Open the affected client, for example: `https://admin.growerp.local:8443`
 2. Press **Ctrl+Shift+Delete** (or **Cmd+Shift+Delete** on Mac)
 3. Select "Cached images and files"
 4. Click "Clear data"
 5. **Hard refresh**: Press **Ctrl+Shift+R** (or **Cmd+Shift+R** on Mac)
 
 ### Firefox
-1. Open the admin app: `http://localhost:8080/admin/`
+1. Open the affected client, for example: `https://admin.growerp.local:8443`
 2. Press **Ctrl+Shift+Delete** (or **Cmd+Shift+Delete** on Mac)
 3. Select "Cache"
 4. Click "Clear Now"
@@ -48,24 +50,32 @@ After clearing cache, you can verify the backend URL is correct:
 2. Go to **Console** tab
 3. Type: `fetch('/assets/assets/cfg/app_settings.json').then(r => r.json()).then(console.log)`
 4. Press Enter
-5. Check the output - `databaseUrl` should be `/rest`
+5. Check the output - `databaseUrl` should be `https://backend.growerp.local:8443`
 
 Or check the Network tab:
 1. Open DevTools (F12)
 2. Go to **Network** tab
 3. Filter by "Fetch/XHR"
-4. Look for requests - they should go to `http://localhost:8080/rest/...` not `https://backend.growerp.org/...`
+4. Look for requests - they should go to `https://backend.growerp.local:8443/rest/...`
+
+If the browser console shows `TypeError: Failed to fetch` before any request
+appears in the network tab, check `docker/README.md` first for the local hosts
+and certificate steps.
 
 ## Alternative: Incognito/Private Mode
 
 The easiest way to test without clearing cache:
 1. Open a new **Incognito/Private window**
-2. Navigate to `http://localhost:8080/admin/`
+2. Navigate to `https://admin.growerp.local:8443`
 3. The app will load fresh without any cached data
 
 ## Why This Is Needed
 
-The Flutter service worker aggressively caches all assets including `app_settings.json`. When we updated the configuration, the old service worker was still serving the cached version with the production URLs. After clearing the cache, the new service worker will load and cache the updated configuration with relative URLs.
+The Flutter service worker aggressively caches assets including
+`app_settings.json`. If the browser still serves an older file, the client can
+keep calling the wrong backend URL even after the stack has been corrected.
+After clearing the cache, the latest client assets and configuration are loaded
+again.
 
 ## Future Deployments
 

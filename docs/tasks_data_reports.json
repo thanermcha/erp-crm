@@ -1,0 +1,1375 @@
+[
+  {
+    "report_type": "tasks+data",
+    "report_version": "1.0",
+    "created_at": "2026-06-04T03:21:01-03:00",
+    "summary": "GrowERP CRM/Freelabot integration trace report with git, runtime, file, commit, model, token, IDE and validation metadata.",
+    "created_by": {
+      "agent": "Codex",
+      "model": "GPT-5 Codex",
+      "model_effort_observed": "5.5 Extra High",
+      "token_usage": {
+        "exact_current_session_available": false,
+        "observed_prior_turn_total_tokens": 134991,
+        "observed_prior_turn_input_tokens": 125791,
+        "observed_prior_turn_cached_input_tokens": 274560,
+        "observed_prior_turn_output_tokens": 9200,
+        "observed_prior_turn_reasoning_tokens": 6407,
+        "source": "user-pasted Codex UI token usage; exact aggregate for this full session is not exposed in local CLI/runtime"
+      }
+    },
+    "environment": {
+      "host": "Moore-Laptop-63",
+      "user": "moore",
+      "timezone": "America/Belem",
+      "workspace": "/home/moore/growerp",
+      "ide": "Cursor",
+      "terminal": "bash",
+      "docker_server_version": "28.2.2",
+      "docker_compose_version": "2.37.1+ds1-0ubuntu2~25.04.1"
+    },
+    "repositories": [
+      {
+        "path": "/home/moore/growerp",
+        "remote": "https://github.com/growerp/growerp",
+        "branch": "integracao",
+        "head": "ea3e25fb3177166e6d34f8ebce3cee86118be99f",
+        "tracked_modified": [
+          "backend/data/GrowerpFreelabotCrmData.xml",
+          "backend/data/GrowerpSupport.xml",
+          "flutter/packages/admin/assets/cfg/app_settings.json"
+        ],
+        "untracked": [
+          ".antigravitycli/0910bc5d-3486-4309-85e7-3338e74eb180.json",
+          "docs/CRM_Integration_Status_Report.md",
+          "docs/tasks_data_reports.json",
+          "flutter/packages/growerp_catalog/example/macos/Flutter/ephemeral/flutter_native_integration.env"
+        ]
+      },
+      {
+        "path": "/home/moore/growerp/moqui/runtime",
+        "remote": "https://github.com/growerp/moqui-runtime.git",
+        "branch": "growerp",
+        "head": "c2732620400689951ac7f20d52cd5463424709f7",
+        "status": "clean"
+      }
+    ],
+    "branch_commits": [
+      {
+        "sha": "28b694a8d0f5105b971566ee1c99535aa7c6bf0a",
+        "author": "thanermcha",
+        "date": "2026-06-03T22:46:09-03:00",
+        "subject": "feat: add Freelabot CRM integration"
+      },
+      {
+        "sha": "ea3e25fb3177166e6d34f8ebce3cee86118be99f",
+        "author": "thanermcha",
+        "date": "2026-06-03T22:50:34-03:00",
+        "subject": "feat: add interactive CRM dashboard"
+      }
+    ],
+    "diff_summary": {
+      "master_to_integracao": {
+        "files_changed": 10,
+        "insertions": 2241,
+        "deletions": 5,
+        "added_files": [
+          "backend/data/GrowerpFreelabotCrmData.xml",
+          "crm-dashboard/app.js",
+          "crm-dashboard/data.js",
+          "crm-dashboard/index.html",
+          "crm-dashboard/style.css",
+          "docs/TaskChecklist_growerp-start-stop.md",
+          "docs/growerp_freelabot_integration.md",
+          "growerp-crm.md"
+        ],
+        "modified_files": [
+          "flutter/packages/admin/assets/cfg/app_settings.json",
+          "flutter/packages/growerp/lib/src/growerp/import.dart"
+        ]
+      },
+      "working_tree_uncommitted": {
+        "files_changed": 3,
+        "insertions": 26,
+        "deletions": 24,
+        "note": "Insertion/deletion totals are for tracked source changes before report files were added; report files are intentionally tracked separately as untracked artifacts until committed.",
+        "files": [
+          {
+            "path": "backend/data/GrowerpFreelabotCrmData.xml",
+            "insertions": 18,
+            "deletions": 18
+          },
+          {
+            "path": "backend/data/GrowerpSupport.xml",
+            "insertions": 3,
+            "deletions": 1
+          },
+          {
+            "path": "flutter/packages/admin/assets/cfg/app_settings.json",
+            "insertions": 5,
+            "deletions": 5
+          }
+        ]
+      }
+    },
+    "file_line_counts": {
+      "backend/data/GrowerpFreelabotCrmData.xml": 554,
+      "backend/data/GrowerpSupport.xml": 48,
+      "flutter/packages/admin/assets/cfg/app_settings.json": 31,
+      "docs/CRM_Integration_Status_Report.md": 346,
+      "docs/tasks_data_reports.json": 191,
+      "crm-dashboard/app.js": 225,
+      "crm-dashboard/data.js": 261,
+      "crm-dashboard/index.html": 133,
+      "crm-dashboard/style.css": 752,
+      "docs/TaskChecklist_growerp-start-stop.md": 49,
+      "docs/growerp_freelabot_integration.md": 214,
+      "growerp-crm.md": 47,
+      "flutter/packages/growerp/lib/src/growerp/import.dart": 215
+    },
+    "runtime_changes": [
+      {
+        "target": "growerp-backend:/opt/moqui/runtime/component/growerp/data/GrowerpFreelabotCrmData.xml",
+        "operation": "docker cp and MoquiStart data load",
+        "result": "48 records loaded"
+      },
+      {
+        "target": "growerp-backend:/opt/moqui/runtime/component/growerp/data/GrowerpSupport.xml",
+        "operation": "docker cp and MoquiStart data load",
+        "result": "11 records loaded"
+      },
+      {
+        "target": "growerp-backend:/opt/moqui/runtime/component/PopRestStore/screen/store/admin/assets/assets/cfg/app_settings.json",
+        "operation": "runtime config patch and container restart",
+        "result": "served app_settings points to AppSupport and http://127.0.0.1:18081"
+      }
+    ],
+    "runtime_services": [
+      {
+        "name": "growerp-backend",
+        "image": "growerp/growerp-moqui:latest",
+        "container_id": "316fa81159c3",
+        "status": "Up About an hour (healthy)",
+        "network": "openclaw-ai_openclaw-lan"
+      },
+      {
+        "name": "growerp-database",
+        "image": "postgres:17.2",
+        "container_id": "c9be652f5835",
+        "status": "Up 12 hours",
+        "network": "openclaw-ai_openclaw-lan"
+      }
+    ],
+    "validations": [
+      {
+        "name": "admin app settings served",
+        "command": "curl http://localhost:18081/admin/assets/assets/cfg/app_settings.json",
+        "result": "classificationId=AppSupport; databaseUrl=http://127.0.0.1:18081"
+      },
+      {
+        "name": "login API",
+        "command": "POST http://127.0.0.1:18081/rest/s1/growerp/100/Login",
+        "result": "HTTP 200; user=SystemSupport; classification=AppSupport"
+      },
+      {
+        "name": "CRM landing pages",
+        "command": "GET http://127.0.0.1:18081/rest/s1/growerp/100/LandingPage?start=0&limit=20",
+        "result": "HTTP 200; totalResults=7; blah-* landing pages present"
+      }
+    ],
+    "known_risks": [
+      "Current admin app is configured as AppSupport for local development to bypass incomplete AppAdmin tenant setup.",
+      "SystemSupport has both AppSupport and AppAdmin classifications in local seed data.",
+      "CRM sample data ownerPartyId is _NA_ for this local runtime; tenant-specific production data should use the intended tenant ownerPartyId.",
+      "Untracked generated files are present and should not be committed without review."
+    ]
+  },
+  {
+    "report_type": "tasks+data",
+    "report_version": "1.1",
+    "created_at": "2026-06-05T13:32:18-03:00",
+    "summary": "GrowERP local server/client finalization and repository status trace report covering the configured workspace, related OpenClaw integration repository, Git state, files, lines, runtime, models, tokens, IDE and validations.",
+    "scope": {
+      "primary_workspace": "/home/moore/growerp",
+      "workspace_repositories_found": 8,
+      "related_repositories_found": 1,
+      "commit_scope": "All commits unique to the primary integracao branch plus the current HEAD commit of every discovered repository. Full historical commit logs are intentionally not duplicated.",
+      "credentials_redacted": true
+    },
+    "created_by": {
+      "agent": "Codex",
+      "model": "GPT-5 Codex",
+      "model_identifier_source": "active Codex system/developer context",
+      "model_effort_observed": null,
+      "token_usage": {
+        "exact_current_session_available": false,
+        "input_tokens": null,
+        "cached_input_tokens": null,
+        "output_tokens": null,
+        "reasoning_tokens": null,
+        "total_tokens": null,
+        "remaining_tokens": null,
+        "source": "Token accounting is not exposed to the agent runtime. functions.get_goal returned goal=null, remainingTokens=null and completionBudgetReport=null; no estimates were invented."
+      }
+    },
+    "environment": {
+      "host": "Moore-Laptop-63",
+      "user": "moore",
+      "os": "AcerOS 25.04 (Ubuntu Plucky)",
+      "kernel": "Linux 6.14.0-37-generic x86_64",
+      "timezone": "America/Belem",
+      "shell": "bash",
+      "workspace": "/home/moore/growerp",
+      "workspace_file": "/home/moore/growerp/docs/growerp.code-workspace",
+      "workspace_file_folders": [
+        "/home/moore/growerp",
+        "/home/moore/GrowERPObs"
+      ],
+      "missing_workspace_folders": [
+        "/home/moore/GrowERPObs"
+      ],
+      "ide": {
+        "name": "Cursor",
+        "version": "3.6.31",
+        "embedded_vscode_api_version": "1.123.0",
+        "active_workspace_label": "openclaw-ai-stack",
+        "extension": "openai.chatgpt",
+        "integration": "Codex VS Code extension host"
+      },
+      "tool_versions": {
+        "git": "2.48.1",
+        "docker_server": "28.2.2",
+        "docker_compose": "2.37.1+ds1-0ubuntu2~25.04.1",
+        "java": "OpenJDK 21.0.9",
+        "flutter": "3.44.0",
+        "dart": "3.12.0"
+      },
+      "storage": {
+        "home_filesystem_size": "360G",
+        "home_filesystem_used": "333G",
+        "home_filesystem_available": "8.2G",
+        "home_filesystem_usage_percent": 98,
+        "docker_images_size": "43.91GB",
+        "docker_images_reclaimable": "19.98GB",
+        "docker_build_cache": "12.34kB"
+      }
+    },
+    "repositories": [
+      {
+        "path": "/home/moore/growerp",
+        "relationship": "primary_workspace_root",
+        "remote": "https://github.com/growerp/growerp",
+        "branch": "integracao",
+        "head": "ea3e25fb3177166e6d34f8ebce3cee86118be99f",
+        "head_subject": "feat: add interactive CRM dashboard - visual overview of personas, landing pages, campaigns, and WhatsApp/email outreach templates per Blah Software segment",
+        "upstream": null,
+        "status": "dirty",
+        "tracked_files": 5263,
+        "tracked_text_lines": 579471,
+        "tracked_modified_count": 19,
+        "untracked_file_count": 12,
+        "local_master_divergence": {
+          "behind": 0,
+          "ahead": 2
+        },
+        "origin_master_divergence_observed_without_fetch": {
+          "behind": 69,
+          "ahead": 2
+        }
+      },
+      {
+        "path": "/home/moore/growerp/moqui",
+        "relationship": "primary_submodule",
+        "remote": "git@github.com:growerp/moqui-framework.git",
+        "branch": null,
+        "detached_head": true,
+        "head": "65a544a939a1085c0813f2b3afcb32ac4d1b5371",
+        "head_subject": "support special URL paths such as .well-known.",
+        "status": "clean",
+        "tracked_files": 345,
+        "tracked_text_lines": 95326
+      },
+      {
+        "path": "/home/moore/growerp/moqui/runtime",
+        "relationship": "nested_runtime_repository",
+        "remote": "https://github.com/growerp/moqui-runtime.git",
+        "branch": "growerp",
+        "head": "c2732620400689951ac7f20d52cd5463424709f7",
+        "head_subject": "chore: bump mantle-usl submodule pointer",
+        "status": "clean",
+        "tracked_files": 219,
+        "tracked_text_lines": 37953
+      },
+      {
+        "path": "/home/moore/growerp/moqui/runtime/component/mantle-udm",
+        "relationship": "runtime_component_repository",
+        "remote": "git@github.com:growerp/mantle-udm.git",
+        "branch": null,
+        "detached_head": true,
+        "head": "f53aba96a14fc97c6b42918300ee880fa0eb03a1",
+        "head_subject": "Update versions and documentation for current release",
+        "status": "clean",
+        "tracked_files": 45,
+        "tracked_text_lines": 18566
+      },
+      {
+        "path": "/home/moore/growerp/moqui/runtime/component/mantle-usl",
+        "relationship": "runtime_component_repository",
+        "remote": "git@github.com:growerp/mantle-usl.git",
+        "branch": null,
+        "detached_head": true,
+        "head": "1e8d5256dc8e8cdac132cfc2f5720084e373ea6d",
+        "head_subject": "feat: send notification on ledger recalculation complete",
+        "status": "clean",
+        "tracked_files": 120,
+        "tracked_text_lines": 61671
+      },
+      {
+        "path": "/home/moore/growerp/moqui/runtime/component/moqui-adk",
+        "relationship": "runtime_component_repository",
+        "remote": "git@github.com:growerp/moqui-adk.git",
+        "branch": null,
+        "detached_head": true,
+        "head": "acdb3e5dba3f7e96bad76570572423054211a505",
+        "head_subject": "docs: rewrite README and clean up stale comments",
+        "status": "clean",
+        "tracked_files": 13,
+        "tracked_text_lines": 817
+      },
+      {
+        "path": "/home/moore/growerp/moqui/runtime/component/moqui-fop",
+        "relationship": "runtime_component_repository",
+        "remote": "git@github.com:growerp/moqui-fop.git",
+        "branch": null,
+        "detached_head": true,
+        "head": "fd454b6e2990ea8ab9f60d70cb8eef08605ee133",
+        "head_subject": "Bump version to 2.0.0",
+        "status": "clean",
+        "tracked_files": 13,
+        "tracked_text_lines": 1380
+      },
+      {
+        "path": "/home/moore/growerp/moqui/runtime/component/moqui-mcp",
+        "relationship": "runtime_component_repository",
+        "remote": "git@github.com:growerp/moqui-mcp.git",
+        "branch": null,
+        "detached_head": true,
+        "head": "ff3c9850eb800f8798f0db535cca9fca6d69cf1e",
+        "head_subject": "Refactor MCP Test Services and Enhance MCP Servlet Functionality",
+        "status": "clean",
+        "tracked_files": 71,
+        "tracked_text_lines": 19085
+      },
+      {
+        "path": "/home/moore/openclaw-ai-stack",
+        "relationship": "related_runtime_and_active_ide_workspace",
+        "remote": null,
+        "branch": "feature/ads-optimizer-local-network-ports",
+        "head": "56b726a636467c0e4ffb3d68128d9a6078a3b87d",
+        "head_subject": "feat: add local ads optimizer dashboard, server, and local ports/agents mapping",
+        "status": "dirty",
+        "tracked_files": 35,
+        "tracked_text_lines": 4920,
+        "tracked_modified_count": 12,
+        "untracked_entry_count": 24,
+        "working_tree_insertions": 515,
+        "working_tree_deletions": 2,
+        "disk_usage": "16G"
+      }
+    ],
+    "branch_commits": [
+      {
+        "repository": "/home/moore/growerp",
+        "relationship": "master..integracao",
+        "sha": "28b694a8d0f5105b971566ee1c99535aa7c6bf0a",
+        "author": "thanermcha",
+        "author_email": "thanermaia@gmail.com",
+        "date": "2026-06-03T22:46:09-03:00",
+        "subject": "feat: add Freelabot CRM integration"
+      },
+      {
+        "repository": "/home/moore/growerp",
+        "relationship": "master..integracao",
+        "sha": "ea3e25fb3177166e6d34f8ebce3cee86118be99f",
+        "author": "thanermcha",
+        "author_email": "thanermaia@gmail.com",
+        "date": "2026-06-03T22:50:34-03:00",
+        "subject": "feat: add interactive CRM dashboard"
+      },
+      {
+        "repository": "/home/moore/openclaw-ai-stack",
+        "relationship": "related_repository_head_observed_not_attributed_to_this_report",
+        "sha": "56b726a636467c0e4ffb3d68128d9a6078a3b87d",
+        "author": "thanermcha",
+        "author_email": "thanermaia@gmail.com",
+        "date": "2026-06-05T13:32:18-03:00",
+        "subject": "feat: add local ads optimizer dashboard, server, and local ports/agents mapping"
+      }
+    ],
+    "commits_created_by_agent_in_this_report": [],
+    "diff_summary": {
+      "master_to_integracao": {
+        "files_changed": 10,
+        "insertions": 2241,
+        "deletions": 5,
+        "added_files": [
+          "backend/data/GrowerpFreelabotCrmData.xml",
+          "crm-dashboard/app.js",
+          "crm-dashboard/data.js",
+          "crm-dashboard/index.html",
+          "crm-dashboard/style.css",
+          "docs/TaskChecklist_growerp-start-stop.md",
+          "docs/growerp_freelabot_integration.md",
+          "growerp-crm.md"
+        ],
+        "modified_files": [
+          "flutter/packages/admin/assets/cfg/app_settings.json",
+          "flutter/packages/growerp/lib/src/growerp/import.dart"
+        ]
+      },
+      "primary_working_tree": {
+        "tracked_files_changed": 19,
+        "insertions": 544,
+        "deletions": 82,
+        "untracked_files": 12,
+        "staged_files": 0
+      }
+    },
+    "working_tree_files": [
+      {
+        "path": ".gitignore",
+        "status": "modified",
+        "insertions": 1,
+        "deletions": 0,
+        "current_lines": 25
+      },
+      {
+        "path": "Dockerfile",
+        "status": "modified",
+        "insertions": 9,
+        "deletions": 5,
+        "current_lines": 164
+      },
+      {
+        "path": "backend/data/GrowerpFreelabotCrmData.xml",
+        "status": "modified",
+        "insertions": 18,
+        "deletions": 18,
+        "current_lines": 554
+      },
+      {
+        "path": "backend/data/GrowerpSecurityData.xml",
+        "status": "modified",
+        "insertions": 3,
+        "deletions": 3,
+        "current_lines": 113
+      },
+      {
+        "path": "backend/data/GrowerpSupport.xml",
+        "status": "modified",
+        "insertions": 5,
+        "deletions": 3,
+        "current_lines": 48
+      },
+      {
+        "path": "crm-dashboard/app.js",
+        "status": "modified",
+        "insertions": 96,
+        "deletions": 0,
+        "current_lines": 321
+      },
+      {
+        "path": "crm-dashboard/index.html",
+        "status": "modified",
+        "insertions": 102,
+        "deletions": 0,
+        "current_lines": 235
+      },
+      {
+        "path": "crm-dashboard/style.css",
+        "status": "modified",
+        "insertions": 151,
+        "deletions": 0,
+        "current_lines": 903
+      },
+      {
+        "path": "docker/README.md",
+        "status": "modified",
+        "insertions": 88,
+        "deletions": 20,
+        "current_lines": 98
+      },
+      {
+        "path": "docker/docker-compose-dev.yaml",
+        "status": "modified",
+        "insertions": 33,
+        "deletions": 7,
+        "current_lines": 147
+      },
+      {
+        "path": "flutter/ci/Dockerfile",
+        "status": "modified",
+        "insertions": 4,
+        "deletions": 2,
+        "current_lines": 91
+      },
+      {
+        "path": "flutter/packages/admin/Dockerfile",
+        "status": "modified",
+        "insertions": 4,
+        "deletions": 2,
+        "current_lines": 65
+      },
+      {
+        "path": "flutter/packages/admin/assets/cfg/app_settings.json",
+        "status": "modified",
+        "insertions": 4,
+        "deletions": 4,
+        "current_lines": 31
+      },
+      {
+        "path": "flutter/packages/elearner/Dockerfile",
+        "status": "modified",
+        "insertions": 4,
+        "deletions": 2,
+        "current_lines": 65
+      },
+      {
+        "path": "flutter/packages/health/Dockerfile",
+        "status": "modified",
+        "insertions": 4,
+        "deletions": 2,
+        "current_lines": 64
+      },
+      {
+        "path": "flutter/packages/health/assets/cfg/app_settings.json",
+        "status": "modified",
+        "insertions": 5,
+        "deletions": 5,
+        "current_lines": 31
+      },
+      {
+        "path": "flutter/packages/hotel/Dockerfile",
+        "status": "modified",
+        "insertions": 4,
+        "deletions": 2,
+        "current_lines": 64
+      },
+      {
+        "path": "flutter/packages/support/Dockerfile",
+        "status": "modified",
+        "insertions": 4,
+        "deletions": 2,
+        "current_lines": 64
+      },
+      {
+        "path": "flutter/packages/support/assets/cfg/app_settings.json",
+        "status": "modified",
+        "insertions": 5,
+        "deletions": 5,
+        "current_lines": 31
+      }
+    ],
+    "untracked_files": [
+      {
+        "path": ".antigravitycli/0910bc5d-3486-4309-85e7-3338e74eb180.json",
+        "current_lines": 13,
+        "classification": "external_tool_symlink_target"
+      },
+      {
+        "path": "crm-dashboard/analytics_data.js",
+        "current_lines": 14712,
+        "classification": "generated_or_large_data_artifact"
+      },
+      {
+        "path": "docker/app_settings-admin-dev.json",
+        "current_lines": 21,
+        "classification": "local_client_configuration"
+      },
+      {
+        "path": "docker/app_settings-health-dev.json",
+        "current_lines": 21,
+        "classification": "local_client_configuration"
+      },
+      {
+        "path": "docker/app_settings-support-dev.json",
+        "current_lines": 21,
+        "classification": "local_client_configuration"
+      },
+      {
+        "path": "docker/docker-compose-openclaw.yaml",
+        "current_lines": 12,
+        "classification": "local_runtime_integration"
+      },
+      {
+        "path": "docker/verify-local.sh",
+        "current_lines": 89,
+        "classification": "local_runtime_validation"
+      },
+      {
+        "path": "docs/CRM_Integration_Status_Report.md",
+        "current_lines": 346,
+        "classification": "documentation"
+      },
+      {
+        "path": "docs/LOCAL_IMPLEMENTATION_STATUS.md",
+        "current_lines": 103,
+        "classification": "documentation"
+      },
+      {
+        "path": "docs/growerp.code-workspace",
+        "current_lines": 12,
+        "classification": "ide_workspace_configuration"
+      },
+      {
+        "path": "docs/tasks_data_reports.json",
+        "current_lines_before_append": 187,
+        "current_lines_after_append": 854,
+        "classification": "append_only_trace_database_source"
+      },
+      {
+        "path": "flutter/packages/growerp_catalog/example/macos/Flutter/ephemeral/flutter_native_integration.env",
+        "current_lines": 11,
+        "classification": "generated_ephemeral_file"
+      }
+    ],
+    "branch_file_line_counts": {
+      "backend/data/GrowerpFreelabotCrmData.xml": 554,
+      "crm-dashboard/app.js": 225,
+      "crm-dashboard/data.js": 261,
+      "crm-dashboard/index.html": 133,
+      "crm-dashboard/style.css": 752,
+      "docs/TaskChecklist_growerp-start-stop.md": 49,
+      "docs/growerp_freelabot_integration.md": 214,
+      "flutter/packages/admin/assets/cfg/app_settings.json": 31,
+      "flutter/packages/growerp/lib/src/growerp/import.dart": 215,
+      "growerp-crm.md": 47
+    },
+    "tasks_performed": [
+      {
+        "task": "Audit current implementation against planning and runtime",
+        "result": "Identified two independent GrowERP stacks/databases and stale anonymous runtime volumes."
+      },
+      {
+        "task": "Consolidate persistent local data",
+        "result": "Migrated the tenant and user data into the active PostgreSQL service while preserving pre-consolidation backups."
+      },
+      {
+        "task": "Correct backend image implementation",
+        "result": "Server image now embeds the current local backend tree and no longer declares application runtime directories as anonymous volumes."
+      },
+      {
+        "task": "Correct authentication/security seeds",
+        "result": "Normalized SYSTEM_SUPPORT identity, authorization IDs and fixed-date AppSupport/AppAdmin classifications."
+      },
+      {
+        "task": "Finalize local clients",
+        "result": "Admin, Support and Health clients use their proper classifications and canonical TLS backend/WSS URLs."
+      },
+      {
+        "task": "Integrate current backend with OpenClaw LAN",
+        "result": "Active Moqui container joins openclaw-ai_openclaw-lan with alias growerp-backend."
+      },
+      {
+        "task": "Create repeatable validation and documentation",
+        "result": "Added docker/verify-local.sh, updated docker/README.md and added docs/LOCAL_IMPLEMENTATION_STATUS.md."
+      },
+      {
+        "task": "Create this tasks+data report",
+        "result": "Appended a traceable JSON object without replacing the prior report."
+      }
+    ],
+    "runtime_services": [
+      {
+        "name": "moqui",
+        "service": "moqui-server",
+        "image": "growerp/growerp-moqui",
+        "image_id": "sha256:adbfe430d7a197ce0d2f765858d13a1b4164441605a7495db0afc8665e528b03",
+        "container_id": "686cc02e252b",
+        "status": "running healthy",
+        "ports": "127.0.0.1:18082->80/tcp",
+        "networks": [
+          "docker_default",
+          "openclaw-ai_openclaw-lan"
+        ]
+      },
+      {
+        "name": "postgres",
+        "service": "moqui-database",
+        "image": "postgres:17.2",
+        "container_id": "c2bd4c74264a",
+        "status": "running healthy",
+        "ports": "127.0.0.1:5432->5432/tcp"
+      },
+      {
+        "name": "nginx",
+        "service": "nginx-proxy",
+        "image": "nginxproxy/nginx-proxy:1.3.1",
+        "container_id": "63bfd9979413",
+        "status": "running",
+        "ports": "8080->80/tcp, 8443->443/tcp"
+      },
+      {
+        "name": "admin",
+        "image": "growerp/admin",
+        "image_id": "sha256:88930a6e14e90cea93ea5f52285ce065984e3e33dd2fd412c053b2758962b7d0",
+        "container_id": "32136b198669",
+        "status": "running"
+      },
+      {
+        "name": "support",
+        "image": "growerp/support",
+        "image_id": "sha256:e3802977f3c4f6d5b0813acfb9ea4207878f6b1cabb4f2ede2845a135c3d3c50",
+        "container_id": "4bff00b60149",
+        "status": "running"
+      },
+      {
+        "name": "health",
+        "image": "growerp/health",
+        "image_id": "sha256:906b286085f70ca77bec8e81fcc5eff7ea1396734843a697c4dbbc88984ddcfe",
+        "container_id": "37d6121e067c",
+        "status": "running"
+      },
+      {
+        "name": "growerp-backend",
+        "relationship": "legacy_preserved_container",
+        "container_id": "316fa81159c3",
+        "status": "exited 137"
+      },
+      {
+        "name": "growerp-database",
+        "relationship": "legacy_preserved_container",
+        "container_id": "c9be652f5835",
+        "status": "exited 0"
+      }
+    ],
+    "data_status": {
+      "tenant": {
+        "owner_party_id": "GROWERP",
+        "setup_complete": true,
+        "classification_id": "AppAdmin"
+      },
+      "accounts_verified_without_passwords": [
+        {
+          "user_id": "100000",
+          "username": "augusto+cloudfacilities-blsoftware-20260603@blahsoftware.ia.br",
+          "disabled": false
+        },
+        {
+          "user_id": "SYSTEM_SUPPORT",
+          "username": "SystemSupport",
+          "disabled": false
+        }
+      ],
+      "system_support_classifications": {
+        "AppAdmin": 1,
+        "AppSupport": 1
+      },
+      "backups": [
+        {
+          "path": "docker/backups/growerp-pre-consolidation-20260604.dump",
+          "size": "3.2M",
+          "git_ignored": true
+        },
+        {
+          "path": "docker/backups/growerp-standalone-before-consolidation-20260604.dump",
+          "size": "3.0M",
+          "git_ignored": true
+        }
+      ]
+    },
+    "validations": [
+      {
+        "name": "JSON report before append",
+        "command": "jq empty docs/tasks_data_reports.json",
+        "result": "passed"
+      },
+      {
+        "name": "Compose configuration",
+        "command": "docker compose -f docker/docker-compose-dev.yaml -f docker/docker-compose-openclaw.yaml config --quiet",
+        "result": "passed"
+      },
+      {
+        "name": "Working tree whitespace",
+        "command": "git diff --check",
+        "result": "passed"
+      },
+      {
+        "name": "Local verification",
+        "command": "./docker/verify-local.sh",
+        "result": "backend health, Admin client, Support client, Health client and SystemSupport AppSupport login passed"
+      },
+      {
+        "name": "Tenant admin authentication",
+        "command": "GROWERP_ADMIN_USER=<redacted> GROWERP_ADMIN_PASSWORD=<redacted> ./docker/verify-local.sh",
+        "result": "passed during implementation finalization; credentials not stored in this report"
+      },
+      {
+        "name": "Idempotent support classifications after restart",
+        "command": "PostgreSQL count for SYSTEM_SUPPORT AppAdmin/AppSupport",
+        "result": "exactly one AppAdmin and one AppSupport record"
+      }
+    ],
+    "project_status": {
+      "overall": "local_core_operational_with_repository_hygiene_work_remaining",
+      "server": "operational",
+      "database": "operational_consolidated_and_backed_up",
+      "admin_client": "operational",
+      "support_client": "operational",
+      "health_client": "operational",
+      "openclaw_integration": "operational",
+      "browser_name_resolution": "manual_host_configuration_required",
+      "external_integrations": "not_fully_configured",
+      "source_control_readiness": "not_ready_to_publish_without_review"
+    },
+    "known_risks": [
+      "Primary branch integracao has no configured upstream and is 69 commits behind the observed origin/master ref; integration must be reconciled before publication.",
+      "Primary repository has 19 modified tracked files and 12 untracked files, including a 14,712-line analytics_data.js artifact that should be reviewed before commit.",
+      "Related /home/moore/openclaw-ai-stack repository is dirty with 12 tracked modifications and 24 untracked entries and has no observed remote.",
+      "The configured workspace folder /home/moore/GrowERPObs does not exist.",
+      "The /home filesystem is at 98% usage with 8.2G available; large image builds may fail without cleanup.",
+      "Legacy stopped GrowERP containers remain preserved and may confuse operators if restarted accidentally.",
+      "Browser access still requires growerp.local host resolution and trust of the self-signed development certificate.",
+      "SMTP, BirdSend, payment, Gemini/LLM and Browser MCP credentials remain external or empty.",
+      "Exact model token usage is unavailable from the active agent runtime."
+    ],
+    "recommended_next_actions": [
+      "Review and split the primary working tree into intentional commits; exclude generated, ephemeral and external-tool artifacts.",
+      "Fetch and reconcile integracao with origin/master in a dedicated integration branch before pushing.",
+      "Decide whether crm-dashboard/analytics_data.js belongs in Git or should be generated/ignored.",
+      "Repair or remove the missing /home/moore/GrowERPObs workspace folder reference.",
+      "Archive or explicitly label the legacy stopped GrowERP containers and old OpenClaw database volume.",
+      "Configure LAN DNS or hosts entries and a trusted certificate before integrating other machines.",
+      "Configure and validate external service credentials feature by feature."
+    ],
+    "report_storage": {
+      "format": "JSON",
+      "path": "docs/tasks_data_reports.json",
+      "append_only": true,
+      "database_import_ready": true,
+      "line_count_before_append": 187,
+      "line_count_after_append": 854
+    }
+  },
+  {
+    "report_type": "tasks+data",
+    "report_version": "1.2",
+    "created_at": "2026-06-05T15:21:33-03:00",
+    "summary": "Read-only audit of Chagas and Windows SSH availability, SDR-BOT/Freela-bot client data, GrowERP CRM activity, import coverage and local authentication state.",
+    "scope": {
+      "workspace": "/home/moore/growerp",
+      "requested_remote_hosts": [
+        "chagas@192.168.15.33",
+        "Windows host on 192.168.15.0/24"
+      ],
+      "requested_systems": [
+        "SDR-BOT",
+        "Freela-bot",
+        "GrowERP CRM"
+      ],
+      "access_mode": "read-only",
+      "credentials_and_personal_contact_details_redacted": true
+    },
+    "created_by": {
+      "agent": "Codex",
+      "model": "GPT-5 Codex",
+      "ide": "Cursor with Codex extension",
+      "token_usage": {
+        "exact_current_session_available": false,
+        "source": "Token accounting is not exposed to the agent runtime; no estimate was invented."
+      }
+    },
+    "repository": {
+      "path": "/home/moore/growerp",
+      "branch": "integracao",
+      "head": "ea3e25fb3177166e6d34f8ebce3cee86118be99f",
+      "head_subject": "feat: add interactive CRM dashboard - visual overview of personas, landing pages, campaigns, and WhatsApp/email outreach templates per Blah Software segment",
+      "tracked_changes": 20,
+      "untracked_entries": 13,
+      "tracked_diff": {
+        "files_changed": 20,
+        "insertions": 685,
+        "deletions": 82
+      },
+      "source_control_status": "dirty; existing changes were preserved"
+    },
+    "remote_access": {
+      "chagas": {
+        "initial_ssh_result": "success",
+        "identity": "chagas-labs-03, Ubuntu Linux",
+        "final_ssh_result": "connection refused",
+        "remote_filesystem_audited": false,
+        "ports_observed": {
+          "22": "closed_or_filtered",
+          "3000": "open, AI Nexus",
+          "3389": "open, RDP",
+          "8080": "open, Wekan"
+        }
+      },
+      "windows": {
+        "ssh_access_result": "not available",
+        "conclusion": "No Windows machine with accessible OpenSSH was found; historical candidates 192.168.15.6 and 192.168.15.43 were offline."
+      }
+    },
+    "client_data_audit": {
+      "pipeline_contacts": 2565,
+      "pipeline_contacts_imported_into_growerp": 2509,
+      "import_percentage": 97.82,
+      "contacts_not_imported": 56,
+      "not_imported_root_cause": "multiple email addresses joined by slash were treated as one invalid address",
+      "warm_leads_total": 9,
+      "warm_leads_imported": 9,
+      "pipeline_provenance": "Moore-Laptop-63 local Linux host"
+    },
+    "activity_audit": {
+      "growerp_communication_events": 0,
+      "growerp_sales_opportunities": 0,
+      "growerp_campaign_metrics": 0,
+      "growerp_contact_list_memberships": 0,
+      "configured_campaigns": 6,
+      "active_campaigns": 0,
+      "campaign_messages_sent": 0,
+      "separate_activity_feed_events": 20,
+      "separate_activity_feed_generation_events": 3,
+      "separate_activity_feed_matches_to_pipeline_or_growerp": 0,
+      "conclusion": "Contacts exist, but there is no evidence of executed SDR-BOT/Freela-bot commercial activity in GrowERP."
+    },
+    "local_authentication": {
+      "system_support_login": "passed for AppSupport",
+      "system_support_disabled": false,
+      "system_support_successive_failed_logins": 0,
+      "active_user_accounts": 4,
+      "accounts_updated_since_2026_06_04": [
+        "agent-claude",
+        "mcp-user"
+      ],
+      "expected_regular_user_created_on_2026_06_04_found": false,
+      "conclusion": "The reported user is not present in the active local database and may have been created in another runtime/database or not persisted."
+    },
+    "runtime_status": {
+      "backend": "healthy",
+      "database": "healthy",
+      "admin_client": "operational",
+      "support_client": "operational",
+      "health_client": "operational"
+    },
+    "validations": [
+      {
+        "command": "jq empty docs/CRM_SSH_CLIENT_ACTIVITY_AUDIT_20260605.json",
+        "result": "passed before authentication details were appended"
+      },
+      {
+        "command": "./docker/verify-local.sh",
+        "result": "backend health, Admin, Support, Health and SystemSupport AppSupport login passed"
+      },
+      {
+        "command": "git diff --check",
+        "result": "failed because of pre-existing trailing whitespace in crm-dashboard/index.html:228; not introduced by this audit"
+      },
+      {
+        "command": "TCP probes against 192.168.15.33",
+        "result": "22 closed_or_filtered; 3000, 3389 and 8080 open"
+      }
+    ],
+    "artifacts_created": [
+      {
+        "path": "docs/CRM_SSH_CLIENT_ACTIVITY_AUDIT_20260605.json",
+        "format": "JSON",
+        "line_count": 240,
+        "purpose": "Detailed database-import, activity and remote-access audit"
+      },
+      {
+        "path": "docs/tasks_data_reports.json",
+        "format": "append-only JSON array",
+        "purpose": "Machine-readable trace report"
+      }
+    ],
+    "limitations": [
+      "The Chagas remote filesystem could not be inspected after its SSH service stopped accepting connections.",
+      "No accessible Windows OpenSSH service was found.",
+      "The separate activity feed has no canonical party mapping to the GrowERP contacts.",
+      "Exact agent token usage is unavailable."
+    ],
+    "recommended_next_actions": [
+      "Restore OpenSSH on Chagas and perform the pending read-only inventory.",
+      "Enable and authorize OpenSSH on the intended Windows machine.",
+      "Locate or recreate the expected June 4, 2026 regular user in the active local database.",
+      "Split and re-import the 56 multi-email contacts.",
+      "Connect bot executions to GrowERP CommunicationEvent, opportunities and campaign metrics."
+    ],
+    "report_storage": {
+      "format": "JSON",
+      "path": "docs/tasks_data_reports.json",
+      "append_only": true,
+      "database_import_ready": true,
+      "line_count_before_append": 854,
+      "line_count_after_append": 1010,
+      "lines_appended_this_report": 156
+    }
+  },
+  {
+    "report_type": "tasks+data",
+    "report_version": "1.3",
+    "created_at": "2026-06-05T16:39:26-03:00",
+    "summary": "Integrated the debagents VPS inventory workflow with the local OpenClaw agent hub, installed an hourly read-only inventory and local enrichment comparison cycle, registered vps-maintenance, validated GrowERP locally and generated traceable reports.",
+    "scope": {
+      "primary_workspace": "/home/moore/growerp",
+      "integration_workspace": "/home/moore/openclaw-ai-stack",
+      "agent_workspace": "/home/moore/.openclaw/workspaces/vps-maintenance",
+      "remote_host": "vps-cloud",
+      "remote_user": "debagents",
+      "remote_access_mode": "SSH read-only operational workflow",
+      "content_policy": {
+        "approval_required": true,
+        "publication_allowed": false,
+        "database_mutation_allowed": false,
+        "credentials_and_personal_contact_details_redacted": true
+      }
+    },
+    "created_by": {
+      "agent": "Codex",
+      "model": "GPT-5 Codex",
+      "local_hub_agent_model": "ollama/qwen3:4b",
+      "ide": "Cursor with Codex extension",
+      "ide_cli_versions_detected": {
+        "code": "1.123.0",
+        "cursor": "3.6.31"
+      },
+      "host": "Moore-Laptop-63",
+      "timezone": "America/Belem",
+      "token_usage": {
+        "exact_current_session_available": false,
+        "source": "Token accounting is not exposed to the agent runtime; no estimate was invented."
+      }
+    },
+    "repositories": [
+      {
+        "path": "/home/moore/openclaw-ai-stack",
+        "purpose": "Local agent hub and VPS maintenance integration",
+        "branch": "feature/ads-optimizer-local-network-ports",
+        "head": "56b726a636467c0e4ffb3d68128d9a6078a3b87d",
+        "head_subject": "feat: add local ads optimizer dashboard, server, and local ports/agents mapping",
+        "head_author": "thanermcha <thanermaia@gmail.com>",
+        "head_created_at": "2026-06-05T13:32:18-03:00",
+        "configured_git_remotes": [],
+        "commit_count": 2,
+        "commits_created_by_this_task": [],
+        "source_control_status": "dirty; existing changes were preserved",
+        "tracked_modified_entries": 12,
+        "untracked_entries": 27,
+        "current_tracked_diff": {
+          "files_changed": 12,
+          "insertions": 618,
+          "deletions": 2,
+          "attribution_note": "Repository-wide current diff includes pre-existing work and must not be attributed entirely to this task."
+        }
+      },
+      {
+        "path": "/home/moore/growerp",
+        "purpose": "Primary workspace, local GrowERP runtime and tasks+data storage",
+        "branch": "integracao",
+        "head": "ea3e25fb3177166e6d34f8ebce3cee86118be99f",
+        "head_subject": "feat: add interactive CRM dashboard - visual overview of personas, landing pages, campaigns, and WhatsApp/email outreach templates per Blah Software segment",
+        "head_author": "thanermcha <thanermaia@gmail.com>",
+        "head_created_at": "2026-06-03T22:50:34-03:00",
+        "configured_git_remotes": [
+          "origin https://github.com/growerp/growerp"
+        ],
+        "commit_count": 1502,
+        "commits_created_by_this_task": [],
+        "source_control_status": "dirty; existing changes were preserved and this report remains untracked",
+        "tracked_modified_entries": 20,
+        "untracked_entries": 13,
+        "current_tracked_diff": {
+          "files_changed": 20,
+          "insertions": 685,
+          "deletions": 82,
+          "attribution_note": "Repository-wide current diff predates this report and was not modified by the integration task."
+        }
+      }
+    ],
+    "implementation": {
+      "agent_registration": {
+        "agent_id": "vps-maintenance",
+        "status": "registered in OpenClaw gateway",
+        "workspace": "/home/moore/.openclaw/workspaces/vps-maintenance",
+        "model": "ollama/qwen3:4b",
+        "environment_file_mode": "0600",
+        "instructions": [
+          "Inventory host, Docker containers, Compose projects, health and capacity.",
+          "Compare only inventory metadata with approved local sources.",
+          "Do not use docker exec, docker cp or mounts to read remote secrets or databases.",
+          "Do not mutate remote services, local databases or published content.",
+          "Report pending candidates and require approval before use."
+        ]
+      },
+      "scheduler": {
+        "status": "installed in host crontab",
+        "cadence": "hourly at minute 17",
+        "locking": "flock -n volumes/locks/maintenance-hourly.lock",
+        "command": "./bin/openclaw-stack maintenance-hourly",
+        "log": "volumes/logs/maintenance-hourly.log",
+        "other_jobs_installed_by_the_idempotent_cron_block": [
+          "WordPress health each Monday at 08:00",
+          "Google Ads analysis every 6 hours"
+        ]
+      },
+      "remote_inventory": {
+        "host_id": "vps-cloud",
+        "hostname": "srv1632842",
+        "ssh_ok": true,
+        "remote_user": "debagents",
+        "remote_user_groups": [
+          "debagents",
+          "docker"
+        ],
+        "docker_access_security_note": "Membership in the docker group is root-equivalent and must remain restricted.",
+        "containers_total": 27,
+        "containers_running": 26,
+        "compose_projects": 13,
+        "stopped_containers": [
+          {
+            "name": "blahsoftware_pma",
+            "status": "Exited (0) 4 weeks ago",
+            "image": "phpmyadmin/phpmyadmin"
+          }
+        ],
+        "swap_bytes": 0,
+        "swap_configuration": {
+          "fstab_entry": "/swapfile none swap sw 0 0",
+          "swapfile_exists": false,
+          "conclusion": "Swap was not cleanly disabled: it remains configured in fstab, but the /swapfile backing file is missing, so no swap can activate."
+        },
+        "disk_root_usage_percent": 72,
+        "memory_total_bytes": 16767479808,
+        "memory_available_bytes": 5956657152
+      },
+      "local_enrichment": {
+        "status": "operational advisory queue",
+        "approved_sources": [
+          {
+            "id": "crm_pipeline",
+            "type": "SQLite read-only",
+            "path": "/home/moore/Documentos/Data/csvs-primeiros100-/csvs-fbh-crm-hs-diversos/output_crm_pipeline/db/crm.sqlite3"
+          },
+          {
+            "id": "wordpress_post_inventory",
+            "type": "CSV read-only",
+            "path": "/home/moore/Documentos/Data/csvs-primeiros100-/post_inventory.csv"
+          },
+          {
+            "id": "crm_enrichment_tasks",
+            "type": "CSV read-only",
+            "path": "/home/moore/Documentos/Data/csvs-primeiros100-/csvs-fbh-crm-hs-diversos/output_crm_pipeline/reports/enrichment_tasks.csv"
+          }
+        ],
+        "source_count": 3,
+        "candidate_count": 5,
+        "candidates": [
+          {
+            "project_id": "growerp",
+            "total_local_matches": 3110
+          },
+          {
+            "project_id": "smart-content-staging",
+            "total_local_matches": 412
+          },
+          {
+            "project_id": "minas-tratores-docker",
+            "total_local_matches": 243
+          },
+          {
+            "project_id": "shop-facilities-landing",
+            "total_local_matches": 1080
+          },
+          {
+            "project_id": "vnmaquinas-wp",
+            "total_local_matches": 15426
+          }
+        ],
+        "privacy_scan": "No email addresses, token values or secret values detected in the generated enrichment latest JSON and Markdown.",
+        "matching_quality_note": "Initial substring matching is intentionally broad; high-volume candidates, especially vnmaquinas-wp, require human review before use."
+      }
+    },
+    "source_files": {
+      "created_by_this_task": [
+        {
+          "path": "/home/moore/openclaw-ai-stack/maintenance-agent/compare_inventory.py",
+          "line_count": 338,
+          "purpose": "Read-only comparison of inventory metadata with approved local SQLite and CSV sources."
+        },
+        {
+          "path": "/home/moore/openclaw-ai-stack/maintenance-agent/hourly_cycle.py",
+          "line_count": 123,
+          "purpose": "Deterministic hourly inventory and enrichment orchestration."
+        }
+      ],
+      "modified_for_this_task": [
+        {
+          "path": "/home/moore/openclaw-ai-stack/.env.example",
+          "line_count": 116
+        },
+        {
+          "path": "/home/moore/openclaw-ai-stack/.gitignore",
+          "line_count": 41
+        },
+        {
+          "path": "/home/moore/openclaw-ai-stack/README.md",
+          "line_count": 293
+        },
+        {
+          "path": "/home/moore/openclaw-ai-stack/bin/openclaw-stack",
+          "line_count": 332
+        },
+        {
+          "path": "/home/moore/openclaw-ai-stack/agents/tasks/worker.py",
+          "line_count": 189
+        },
+        {
+          "path": "/home/moore/openclaw-ai-stack/agents/tasks/daily_report.py",
+          "line_count": 341
+        },
+        {
+          "path": "/home/moore/openclaw-ai-stack/agents/tasks/validation_round.py",
+          "line_count": 236
+        },
+        {
+          "path": "/home/moore/openclaw-ai-stack/maintenance-agent/README.md",
+          "line_count": 158
+        },
+        {
+          "path": "/home/moore/openclaw-ai-stack/maintenance-agent/collect_inventory.py",
+          "line_count": 724
+        },
+        {
+          "path": "/home/moore/openclaw-ai-stack/maintenance-agent/register_openclaw_agents.py",
+          "line_count": 413
+        },
+        {
+          "path": "/home/moore/openclaw-ai-stack/maintenance-agent/projects.registry.example.json",
+          "line_count": 139
+        },
+        {
+          "path": "/home/moore/openclaw-ai-stack/maintenance-agent/projects.registry.json",
+          "line_count": 147,
+          "tracking_note": "Runtime registry is intentionally ignored by Git."
+        }
+      ],
+      "line_accounting_note": "Exact task-only deltas are available for newly created files. Several modified integration files were already untracked or modified before this task, so current line counts are reported without inventing a task-only delta."
+    },
+    "generated_artifacts": [
+      {
+        "path": "/home/moore/.openclaw/workspaces/vps-maintenance",
+        "files": 9,
+        "total_lines": 160,
+        "purpose": "Registered OpenClaw agent instructions, heartbeat, tools and environment."
+      },
+      {
+        "path": "/home/moore/openclaw-ai-stack/volumes/maintenance-agent/hourly/structured/latest.json",
+        "line_count": 40
+      },
+      {
+        "path": "/home/moore/openclaw-ai-stack/volumes/maintenance-agent/hourly/reports/latest.md",
+        "line_count": 12
+      },
+      {
+        "path": "/home/moore/openclaw-ai-stack/volumes/content-agent/enrichment-queue/structured/latest.json",
+        "line_count": 1173
+      },
+      {
+        "path": "/home/moore/openclaw-ai-stack/volumes/content-agent/enrichment-queue/reports/latest.md",
+        "line_count": 66
+      },
+      {
+        "path": "/home/moore/openclaw-ai-stack/volumes/content-agent/enrichment-queue/enrichment-candidates-latest.csv",
+        "line_count": 6
+      },
+      {
+        "path": "/home/moore/openclaw-ai-stack/volumes/agent-tasks/reports/latest.html",
+        "line_count": 446,
+        "dashboard": "http://127.0.0.1:18080/start/reports/daily-latest.html"
+      }
+    ],
+    "growerp_local_status": {
+      "backend_health": "passed at https://backend.growerp.local:8443/status",
+      "database": "postgres container healthy",
+      "clients": {
+        "admin": "operational",
+        "support": "operational",
+        "health": "operational"
+      },
+      "system_support_login": "passed for AppSupport",
+      "admin_login": "skipped because GROWERP_ADMIN_USER and GROWERP_ADMIN_PASSWORD are not configured"
+    },
+    "validations": [
+      {
+        "command": "python3 -m py_compile on changed Python integration files",
+        "result": "passed"
+      },
+      {
+        "command": "jq empty maintenance-agent/projects.registry.json maintenance-agent/projects.registry.example.json",
+        "result": "passed"
+      },
+      {
+        "command": "bash -n bin/openclaw-stack",
+        "result": "passed"
+      },
+      {
+        "command": "git diff --check on integration source files",
+        "result": "passed"
+      },
+      {
+        "command": "./bin/openclaw-stack agents-register --agent vps-maintenance",
+        "result": "passed; agent registered in OpenClaw gateway"
+      },
+      {
+        "command": "./bin/openclaw-stack cron-setup",
+        "result": "passed; hourly job installed"
+      },
+      {
+        "command": "./bin/openclaw-stack maintenance-hourly",
+        "result": "passed directly and through the cron-equivalent flock command; inventory 10.80 seconds and comparison 3.35 seconds"
+      },
+      {
+        "command": "privacy regex scan of enrichment latest JSON and Markdown",
+        "result": "passed; no email addresses or assigned secret values detected"
+      },
+      {
+        "command": "./bin/openclaw-stack report-daily",
+        "result": "passed"
+      },
+      {
+        "command": "./docker/verify-local.sh",
+        "result": "passed; backend, Admin, Support, Health and SystemSupport AppSupport login verified"
+      }
+    ],
+    "known_risks_and_limitations": [
+      "Both repositories are dirty and contain substantial pre-existing tracked and untracked work; no changes were reverted and no commit was created.",
+      "The OpenClaw repository currently has no configured Git remote.",
+      "The debagents user belongs to the docker group, which is root-equivalent; keep the SSH key and command surface restricted.",
+      "The blahsoftware_pma phpMyAdmin container exited successfully four weeks ago; confirm whether this administrative surface is intentionally disabled.",
+      "The VPS has a stale /swapfile entry in fstab but the file is missing, so swap cannot activate; root disk usage is 72 percent.",
+      "The initial local content matching is broad and produces false-positive candidates that require human review.",
+      "Every local shell invocation reports a conflicting Trusted value for the localhost/aceros APT source; repair the duplicate APT source configuration separately.",
+      "Exact Codex token usage is unavailable."
+    ],
+    "recommended_next_actions": [
+      "Review the five enrichment candidates and refine aliases or keywords before approving content briefs.",
+      "Identify the stopped VPS container and decide whether it is intentionally disabled.",
+      "Recreate and secure /swapfile or remove the stale fstab entry after reviewing memory and disk capacity.",
+      "Restrict the debagents SSH key with network, key and command controls appropriate to its Docker privilege.",
+      "Add alert thresholds for hourly report age, SSH failure, stopped containers, disk usage and memory pressure.",
+      "Repair the conflicting localhost/aceros APT source configuration.",
+      "Commit the integration files only after separating them from unrelated dirty repository changes."
+    ],
+    "report_storage": {
+      "format": "JSON",
+      "path": "docs/tasks_data_reports.json",
+      "append_only": true,
+      "database_import_ready": true,
+      "line_count_before_append": 1010,
+      "line_count_after_append": 1375,
+      "lines_appended_this_report": 365
+    }
+  }
+]

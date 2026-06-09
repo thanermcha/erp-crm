@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../GrowERPObs"
+		}
+	],
+	"settings": {
+		"workbench.colorTheme": "Dark Modern"
+	}
+}

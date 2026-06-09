@@ -1,0 +1,240 @@
+{
+  "report_type": "crm-ssh-client-activity-audit",
+  "report_version": "1.0",
+  "created_at": "2026-06-05T15:18:52-03:00",
+  "scope": {
+    "requested_hosts": [
+      "chagas",
+      "Windows host on the local network"
+    ],
+    "requested_systems": [
+      "SDR-BOT",
+      "Freela-bot",
+      "GrowERP CRM"
+    ],
+    "access_mode": "read-only",
+    "personal_contact_details_stored_in_report": false
+  },
+  "remote_access": {
+    "chagas": {
+      "address": "192.168.15.33",
+      "ssh_user": "chagas",
+      "initial_ssh_result": "success",
+      "initial_hostname": "chagas-labs-03",
+      "initial_os": "Ubuntu Linux, kernel 6.17.0-35-generic",
+      "subsequent_ssh_result": "connection refused",
+      "subsequent_attempts": 10,
+      "ports_observed": {
+        "22": "closed after initial successful session",
+        "3000": "AI Nexus - Automation Hub, Next.js, authentication required",
+        "3389": "RDP open",
+        "8080": "Wekan, authentication required"
+      },
+      "remote_filesystem_audited": false,
+      "reason_remote_filesystem_not_audited": "SSH service stopped accepting connections before the read-only inventory could run"
+    },
+    "windows": {
+      "ssh_access_result": "not available",
+      "lan_scan_range": "192.168.15.0/24",
+      "ssh_hosts_observed": [
+        {
+          "address": "192.168.15.1",
+          "identity": "router, Dropbear SSH"
+        },
+        {
+          "address": "192.168.15.25",
+          "identity": "Ubuntu OpenSSH",
+          "authentication": "current key not authorized"
+        },
+        {
+          "address": "192.168.15.72",
+          "identity": "current local Linux workstation"
+        }
+      ],
+      "rdp_hosts_observed": [
+        "192.168.15.33"
+      ],
+      "historical_candidates_offline": [
+        "192.168.15.6",
+        "192.168.15.43"
+      ],
+      "conclusion": "No Windows machine with an accessible OpenSSH service was found"
+    }
+  },
+  "datasets_audited": {
+    "pipeline_database": {
+      "path": "/home/moore/Documentos/Data/csvs-primeiros100-/csvs-fbh-crm-hs-diversos/output_crm_pipeline/db/crm.sqlite3",
+      "provenance": {
+        "source_host_name": "Moore-Laptop-63",
+        "source_user": "moore",
+        "source_platform": "Linux"
+      },
+      "provenance_conclusion": "The audited pipeline was produced locally, not directly on Chagas or Windows",
+      "counts": {
+        "raw_rows": 4909,
+        "contacts": 2565,
+        "companies": 18,
+        "dedup_clusters": 2565,
+        "dedup_approval_queue": 2565,
+        "file_inventory": 11,
+        "database_enrichment_tasks": 0,
+        "generated_enrichment_task_report_rows": 2565
+      },
+      "contact_quality": {
+        "with_email": 2565,
+        "unique_emails": 2565,
+        "with_phone": 857,
+        "with_company": 1,
+        "with_project": 1,
+        "with_notes": 0
+      },
+      "source_contact_counts": {
+        "Clientes Ativos Centro.csv.csv": 1101,
+        "Clientes ativos Santa Luiza.csv.csv": 662,
+        "Clientes ativos Santa Luiza c menos.csv": 566,
+        "Clientes Ativos Shopping.csv.csv": 235,
+        "clientes.csv": 1
+      },
+      "lead_scores": {
+        "total": 2565,
+        "warm": 9,
+        "cold": 2556,
+        "hot": 0
+      },
+      "warm_lead_names": [
+        "ELOIZA PETITI BUENO JUNQUEIRA",
+        "ANA PAULA MIRANDA DE CASTRO BASILIO",
+        "PRINCESA IRIS ALVES DE ALBUQUERQUE",
+        "THANER MAIA CHAGAS",
+        "DIEGO",
+        "MARCUS WINICIUS GARCIA DE PAULA RIBEIRO",
+        "MARIA JULIA DINIZ VIEIRA RANGEL",
+        "MARIANA APARECIDA PINTO",
+        "THALES FERREIRA CONCEIO"
+      ]
+    },
+    "activity_feed": {
+      "path": "/home/moore/Documentos/Data/csvs-primeiros100-/recent_activity_feed.csv",
+      "events": 20,
+      "unique_user_ids": 15,
+      "unique_account_emails": 14,
+      "activity_types": {
+        "company_created": 17,
+        "generation": 3
+      },
+      "accounts_with_activity_beyond_registration": [
+        {
+          "account_name": "thanermaia",
+          "total_events": 4,
+          "generation_events": 2,
+          "providers": [
+            "openai-dalle3",
+            "openai-gpt-image-1"
+          ]
+        },
+        {
+          "account_name": "mchagasthaner",
+          "total_events": 3,
+          "generation_events": 1,
+          "providers": [
+            "openai-dalle3"
+          ]
+        }
+      ],
+      "accounts_with_registration_only": 13,
+      "pipeline_contact_matches": 0,
+      "growerp_contact_matches": 0,
+      "conclusion": "This feed represents a separate application/account dataset and is not linked to the SDR contact pipeline or GrowERP parties"
+    }
+  },
+  "growerp_status": {
+    "contacts": {
+      "pipeline_contacts": 2565,
+      "pipeline_contacts_imported_by_email": 2509,
+      "pipeline_contacts_not_imported": 56,
+      "import_percentage": 97.82,
+      "warm_leads_imported": 9,
+      "warm_leads_total": 9
+    },
+    "not_imported_root_cause": {
+      "records_with_multiple_emails_joined_by_slash": 56,
+      "records_with_blank_name": 36,
+      "email_components_total": 127,
+      "unique_email_components": 66,
+      "components_already_in_growerp": 2,
+      "conclusion": "The importer treated concatenated multi-email fields as one invalid email value"
+    },
+    "crm_activity": {
+      "marketing_campaigns": 6,
+      "campaigns_active": 0,
+      "campaign_messages_sent": 0,
+      "campaign_metrics": 0,
+      "communication_events": 0,
+      "communication_event_parties": 0,
+      "sales_opportunities": 0,
+      "sales_opportunity_parties": 0,
+      "contact_lists": 0,
+      "contact_list_parties": 0
+    },
+    "configured_marketing_assets": {
+      "marketing_personas": 6,
+      "landing_pages": 7,
+      "page_sections": 20,
+      "credibility_info": 7,
+      "credibility_statistics": 16
+    },
+    "campaign_names": [
+      "Blah Agents - WhatsApp and Email",
+      "Blah Agro - WhatsApp and Email",
+      "Blah Business - WhatsApp and Email",
+      "Blah Enterprise - WhatsApp and Email",
+      "Blah Franquia - WhatsApp and Email",
+      "Blah Solucoes - WhatsApp and Email"
+    ]
+  },
+  "local_authentication_status": {
+    "verification_command": "./docker/verify-local.sh",
+    "verified_at": "2026-06-05T15:21:33-03:00",
+    "backend_health": "passed",
+    "clients": {
+      "admin": "passed",
+      "support": "passed",
+      "health": "passed"
+    },
+    "system_support": {
+      "username": "SystemSupport",
+      "classification": "AppSupport",
+      "login_result": "passed",
+      "disabled": false,
+      "successive_failed_logins": 0,
+      "successful_login_history_records_since_2026_06_04": 9
+    },
+    "active_user_accounts": 4,
+    "disabled_user_accounts": 1,
+    "accounts_updated_since_2026_06_04": [
+      "agent-claude",
+      "mcp-user"
+    ],
+    "expected_regular_user_created_on_2026_06_04_found": false,
+    "note": "The active database contains no regular user account with a last-updated timestamp on June 4, 2026. The expected account may have been created in another database/runtime or was not persisted."
+  },
+  "conclusions": [
+    "The SDR pipeline has been imported into GrowERP at 97.82 percent coverage.",
+    "The nine warm leads are present in GrowERP.",
+    "There is no evidence of executed SDR-BOT/Freela-bot commercial activity in GrowERP: no sends, communication events, opportunities, metrics or contact-list memberships.",
+    "The separate activity feed contains mostly company registration events and only three image-generation events from two accounts.",
+    "The local GrowERP backend and clients are operational, and SystemSupport authentication passes.",
+    "The expected regular user reportedly created on June 4, 2026 is not present in the active local database.",
+    "The Chagas host is online and serves AI Nexus and Wekan, but its SSH service became unavailable before remote CRM files could be audited.",
+    "No accessible Windows OpenSSH host was found on the local network."
+  ],
+  "recommended_actions": [
+    "Restore and keep OpenSSH enabled on Chagas, then run a read-only inventory for sdr_vault.db, crm_core.py, crm_db.py, manifests, logs and scheduled jobs.",
+    "Enable OpenSSH Server and authorize the current public key on the intended Windows machine, or provide its current IP and SSH username.",
+    "Normalize multi-email fields by splitting on slash, validating each address and re-importing the 56 rejected contacts.",
+    "Create explicit GrowERP contact lists and opportunities for the nine warm leads.",
+    "Connect SDR-BOT/Freela-bot actions to GrowERP CommunicationEvent and campaign metrics before considering the CRM activity integration operational.",
+    "Link or reconcile the separate activity-feed accounts with canonical GrowERP party IDs.",
+    "Confirm which runtime/database received the user created on June 4, 2026, then create or migrate that account into the active local database."
+  ]
+}
