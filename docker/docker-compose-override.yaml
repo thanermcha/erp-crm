@@ -1,0 +1,10 @@
+services:
+  moqui-server:
+    ports:
+      - 127.0.0.1:8080:80
+    volumes:
+      - ../backend/data:/opt/moqui/runtime/component/growerp/data
+      - ../backend/service:/opt/moqui/runtime/component/growerp/service
+    environment:
+      - DB_DATA=INSTALL
+      - webapp_https_enabled=false

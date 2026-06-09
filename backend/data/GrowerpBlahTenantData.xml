@@ -2,25 +2,49 @@
 <!--
   Seed data to create the BLAH_SOFTWARE tenant (organization) and a
   minimal admin user for local development.
+  Follows the OwnerAndCompany view entity pattern:
+    PtyOwner -> Party(ownerPartyId) -> Organization -> PartyRole(OrgInternal)
 -->
 <entity-facade-xml type="seed">
 
-  <!-- Organization / Tenant -->
-  <mantle.party.Party partyId="BLAH_SOFTWARE" pseudoId="BLAH_SOFT" partyTypeEnumId="PtyOrganization" ownerPartyId="BLAH_SOFTWARE" />
+  <!-- Owner party (tenant root) -->
+  <mantle.party.Party partyId="BLAH_SOFT_OWNER" pseudoId="BLAH_OWNR" partyTypeEnumId="PtyOwner" ownerPartyId="BLAH_SOFT_OWNER" />
+
+  <!-- Organization (as a party) with ownerPartyId linking to the owner -->
+  <mantle.party.Party partyId="BLAH_SOFTWARE" pseudoId="BLAH_SOFT" partyTypeEnumId="PtyOrganization" ownerPartyId="BLAH_SOFT_OWNER" />
   <mantle.party.Organization partyId="BLAH_SOFTWARE" organizationName="Blah Software" />
   <mantle.party.PartyRole partyId="BLAH_SOFTWARE" roleTypeId="OrgInternal" />
 
-  <!-- Company classification so seeds can reference ownerPartyId=BLAH_SOFTWARE -->
-  <mantle.party.PartyClassificationAppl partyId="BLAH_SOFTWARE" partyClassificationId="CustomerCompany" fromDate="1265184000000" />
-
-  <!-- Minimal tenant admin user (password: moqui) -->
-  <mantle.party.Party partyId="BLAH_SOFT_ADMIN" partyTypeEnumId="PtyPerson" />
+  <!-- Minimal tenant admin user (password: moqui) with ownerPartyId linking to the same owner -->
+  <mantle.party.Party partyId="BLAH_SOFT_ADMIN" partyTypeEnumId="PtyPerson" ownerPartyId="BLAH_SOFT_OWNER" />
   <mantle.party.Person partyId="BLAH_SOFT_ADMIN" firstName="Blah" lastName="Admin" />
   <moqui.security.UserAccount userId="BLAH_SOFT_ADMIN" username="blahadmin" userFullName="Blah Admin"
       currentPassword="16ac58bbfa332c1c55bd98b53e60720bfa90d394" passwordHashType="SHA"
       partyId="BLAH_SOFT_ADMIN" emailAddress="admin@blahsoftware.ia.br" locale="pt_BR" timeZone="America/Belem" />
   <moqui.security.UserGroupMember userGroupId="ADMIN" userId="BLAH_SOFT_ADMIN" fromDate="1265184000000" />
-  <mantle.party.PartyRelationship partyRelationshipId="BLAH_SOFT_ADMIN_REL" relationshipTypeEnumId="PrtOrgStaff"
+  <mantle.party.PartyRelationship partyRelationshipId="BLAH_SOFT_ADMIN_REL" relationshipTypeEnumId="PrtEmployee"
       fromPartyId="BLAH_SOFT_ADMIN" toPartyId="BLAH_SOFTWARE" fromDate="1265184000000" />
+
+  <!-- AppAdmin classification for the admin UI to recognize this user -->
+  <mantle.party.PartyClassificationAppl partyId="BLAH_SOFT_ADMIN"
+      partyClassificationId="AppAdmin" fromDate="1265184000000" />
+
+  <!-- Activate owner party and mark tenant setup complete -->
+  <mantle.party.Party partyId="BLAH_SOFT_OWNER" disabled="N" />
+  <growerp.general.TenantSetup ownerPartyId="BLAH_SOFT_OWNER"
+      setupComplete="Y" classificationId="AppAdmin"
+      setupCompletedDate="2026-06-09 00:00:00" />
+
+  <!-- Trial subscription so login proceeds past subscription check -->
+  <!-- ownerPartyId=GROWERP means it's managed by the GROWERP system tenant -->
+  <mantle.product.subscription.Subscription
+      subscriptionId="BLAH_TRIAL_SUB"
+      ownerPartyId="GROWERP"
+      externalSubscriptionId="BLAH_SOFT_OWNER"
+      subscriberPartyId="GROWERP"
+      productId="GROWERP_SMALL_PLAN"
+      description="15-year dev trial for BLAH_SOFTWARE"
+      fromDate="2024-01-01 00:00:00"
+      thruDate="2039-12-31 00:00:00" />
 
 </entity-facade-xml>
