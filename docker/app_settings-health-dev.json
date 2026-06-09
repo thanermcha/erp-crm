@@ -1,0 +1,21 @@
+{
+    "appName": "",
+    "packageName": "",
+    "version": "",
+    "build": "",
+    "classificationId": "AppHealth",
+    "backend": "moqui",
+    "databaseUrl": "https://backend.growerp.local:8443",
+    "chatUrl": "wss://backend.growerp.local:8443",
+    "databaseUrlDebug": "https://backend.growerp.local:8443",
+    "chatUrlDebug": "wss://backend.growerp.local:8443",
+    "test": true,
+    "singleCompany": "",
+    "connectTimeoutProd": 30,
+    "receiveTimeoutProd": 300,
+    "connectTimeoutTest": 30,
+    "receiveTimeoutTest": 600,
+    "restRequestLogs": false,
+    "restResponseLogs": false,
+    "cacheMaxStaleMinutes": 0
+}

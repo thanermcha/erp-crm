@@ -3,6 +3,7 @@ docker/elasticsearch/logs
 docker/db
 docker/runtime
 docker/logs
+docker/backups/
 *.ipa
 docker/nginx/html
 .env
@@ -22,3 +23,15 @@ moqui/moqui-plus-runtime.war
 
 authkey.txt
 AuthKey_*.p8
+
+# Local agent / IDE scratch state (not part of the product)
+.antigravitycli/
+.antigravity/
+*.swp
+*.swo
+.DS_Store
+
+# Flutter ephemeral build artifacts
+flutter/packages/*/build/
+flutter/packages/*/.dart_tool/
+flutter/packages/growerp_catalog/example/macos/Flutter/ephemeral/

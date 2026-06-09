@@ -32,6 +32,8 @@
     <button class="nav-tab" data-panel="landing-pages" role="tab" id="tab-landing-pages">Landing Pages</button>
     <button class="nav-tab" data-panel="campaigns" role="tab" id="tab-campaigns">Campanhas</button>
     <button class="nav-tab" data-panel="messages" role="tab" id="tab-messages">Mensagens</button>
+    <button class="nav-tab" data-panel="analytics" role="tab" id="tab-analytics">Analytics VN Máquinas</button>
+    <button class="nav-tab" data-panel="observability" role="tab" id="tab-observability">Observabilidade</button>
   </nav>
 
   <main id="content">
@@ -120,6 +122,153 @@
       <div class="msg-grid" id="msg-grid"></div>
     </section>
 
+    <!-- ====== ANALYTICS ====== -->
+    <section id="panel-analytics" class="panel" role="tabpanel">
+      <div class="analytics-header">
+        <div>
+          <h2 class="section-title" style="margin-bottom: 4px;">Search Console — VN Máquinas</h2>
+          <div class="analytics-sub">Propriedade: <a href="https://vnmaquinas.com.br" target="_blank" style="color: var(--accent-secondary); text-decoration: none;">vnmaquinas.com.br</a> | Segmento: 🌾 Agronegócio</div>
+        </div>
+        <div class="range-selector">
+          <button class="range-btn active" data-range="last16months" id="btn-16m">Últimos 16 meses</button>
+          <button class="range-btn" data-range="may2026" id="btn-may">Maio 2026 (30d)</button>
+        </div>
+      </div>
+
+      <div class="stats-grid" style="margin-top: 20px;">
+        <div class="stat-card purple" id="card-clicks">
+          <div class="stat-icon">🖱️</div>
+          <div class="stat-value" id="val-clicks">—</div>
+          <div class="stat-label">Total de Cliques</div>
+        </div>
+        <div class="stat-card blue" id="card-impressions">
+          <div class="stat-icon">👁️</div>
+          <div class="stat-value" id="val-impressions">—</div>
+          <div class="stat-label">Total de Impressões</div>
+        </div>
+        <div class="stat-card teal" id="card-ctr">
+          <div class="stat-icon">📈</div>
+          <div class="stat-value" id="val-ctr">—</div>
+          <div class="stat-label">CTR Média</div>
+        </div>
+        <div class="stat-card orange" id="card-position">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-value" id="val-position">—</div>
+          <div class="stat-label">Posição Média</div>
+        </div>
+      </div>
+
+      <div class="analytics-grid">
+        <div class="analytics-card">
+          <h3 class="card-title">Top Consultas</h3>
+          <div class="table-wrap">
+            <table class="analytics-table">
+              <thead>
+                <tr>
+                  <th>Consulta</th>
+                  <th>Cliques</th>
+                  <th>Impressões</th>
+                  <th>CTR</th>
+                  <th>Posição</th>
+                </tr>
+              </thead>
+              <tbody id="table-queries-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="analytics-card">
+          <h3 class="card-title">Páginas Principais</h3>
+          <div class="table-wrap">
+            <table class="analytics-table">
+              <thead>
+                <tr>
+                  <th>Página</th>
+                  <th>Cliques</th>
+                  <th>Impressões</th>
+                  <th>CTR</th>
+                  <th>Posição</th>
+                </tr>
+              </thead>
+              <tbody id="table-pages-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="analytics-grid secondary" style="margin-top: 24px;">
+        <div class="analytics-card">
+          <h3 class="card-title">Dispositivos</h3>
+          <div class="device-list" id="device-list"></div>
+        </div>
+
+        <div class="analytics-card">
+          <h3 class="card-title">Países</h3>
+          <div class="table-wrap">
+            <table class="analytics-table">
+              <thead>
+                <tr>
+                  <th>País</th>
+                  <th>Cliques</th>
+                  <th>Impressões</th>
+                  <th>CTR</th>
+                  <th>Posição</th>
+                </tr>
+              </thead>
+              <tbody id="table-countries-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== OBSERVABILITY ====== -->
+    <section id="panel-observability" class="panel" role="tabpanel">
+      <h2 class="section-title">Monitoramento de Infraestrutura e Campanhas</h2>
+      
+      <div class="stats-grid" id="infra-stats-grid" style="margin-bottom: 24px;">
+        <!-- Infra cards will be injected here -->
+      </div>
+
+      <div class="analytics-grid">
+        <div class="analytics-card">
+          <h3 class="card-title">Status das Filas de Mensagem</h3>
+          <div class="table-wrap">
+            <table class="analytics-table">
+              <thead>
+                <tr>
+                  <th>Fila</th>
+                  <th>Canal</th>
+                  <th>Processados</th>
+                  <th>Pendentes</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="table-queues-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="analytics-card">
+          <h3 class="card-title">Agentes de IA Ativos</h3>
+          <div class="table-wrap">
+            <table class="analytics-table">
+              <thead>
+                <tr>
+                  <th>Agent</th>
+                  <th>Segmento</th>
+                  <th>Tarefa</th>
+                  <th>Uptime</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="table-agents-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer id="main-footer">
@@ -128,6 +277,7 @@
   </footer>
 
   <script src="data.js"></script>
+  <script src="analytics_data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

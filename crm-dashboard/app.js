@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderLandingPages();
   renderCampaigns();
   renderMessages();
+  initAnalytics();
+  renderAnalytics('last16months');
+  renderObservability();
 });
 
 // ═══════════ TAB NAVIGATION ═══════════
@@ -223,3 +226,153 @@ document.addEventListener('click', (e) => {
     renderMessages(e.target.dataset.channel);
   }
 });
+
+// ═══════════ SEARCH CONSOLE ANALYTICS ═══════════
+let currentRange = 'last16months';
+
+function initAnalytics() {
+  const rangeBtns = document.querySelectorAll('.range-btn');
+  rangeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      rangeBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentRange = btn.dataset.range;
+      renderAnalytics(currentRange);
+    });
+  });
+}
+
+function renderAnalytics(range) {
+  const store = VN_MAQUINAS_ANALYTICS[range];
+  if (!store) return;
+
+  const formatNum = (num) => num.toLocaleString('pt-BR');
+
+  // 1. Update KPIs
+  document.getElementById('val-clicks').textContent = formatNum(store.summary.clicks);
+  document.getElementById('val-impressions').textContent = formatNum(store.summary.impressions);
+  document.getElementById('val-ctr').textContent = store.summary.ctr.toFixed(1) + '%';
+  document.getElementById('val-position').textContent = store.summary.position.toFixed(1);
+
+  // 2. Populate Queries Table
+  const qBody = document.getElementById('table-queries-body');
+  qBody.innerHTML = '';
+  store.data.queries.slice(0, 10).forEach(q => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${q.query}</strong></td>
+      <td>${formatNum(q.clicks)}</td>
+      <td>${formatNum(q.impressions)}</td>
+      <td>${q.ctr.toFixed(1)}%</td>
+      <td>${q.position.toFixed(1)}</td>
+    `;
+    qBody.appendChild(tr);
+  });
+
+  // 3. Populate Pages Table
+  const pBody = document.getElementById('table-pages-body');
+  pBody.innerHTML = '';
+  store.data.pages.slice(0, 10).forEach(p => {
+    const tr = document.createElement('tr');
+    const displayPage = p.page.replace('https://vnmaquinas.com.br/', '/');
+    tr.innerHTML = `
+      <td><a href="${p.page}" target="_blank" style="color: var(--accent-secondary); text-decoration: none;" title="${p.page}">${displayPage === '/' ? 'Home (/)' : displayPage}</a></td>
+      <td>${formatNum(p.clicks)}</td>
+      <td>${formatNum(p.impressions)}</td>
+      <td>${p.ctr.toFixed(1)}%</td>
+      <td>${p.position.toFixed(1)}</td>
+    `;
+    pBody.appendChild(tr);
+  });
+
+  // 4. Populate Countries Table
+  const cBody = document.getElementById('table-countries-body');
+  cBody.innerHTML = '';
+  store.data.countries.slice(0, 5).forEach(c => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${c.country}</td>
+      <td>${formatNum(c.clicks)}</td>
+      <td>${formatNum(c.impressions)}</td>
+      <td>${c.ctr.toFixed(1)}%</td>
+      <td>${c.position.toFixed(1)}</td>
+    `;
+    cBody.appendChild(tr);
+  });
+
+  // 5. Populate Devices Breakdown
+  const dList = document.getElementById('device-list');
+  dList.innerHTML = '';
+  const totalDevImpressions = store.data.devices.reduce((acc, d) => acc + d.impressions, 0);
+  store.data.devices.forEach(d => {
+    const pct = totalDevImpressions > 0 ? ((d.impressions / totalDevImpressions) * 100).toFixed(1) : 0;
+    const div = document.createElement('div');
+    div.className = 'device-item';
+    div.innerHTML = `
+      <div class="device-meta">
+        <span class="device-name">${d.device === 'Computador' ? '💻 Computador' : d.device === 'Celular' ? '📱 Celular' : '📟 Tablet'}</span>
+        <span class="device-pct">${pct}% (${formatNum(d.clicks)} cliques)</span>
+      </div>
+      <div class="device-bar-outer">
+        <div class="device-bar-inner" style="width: ${pct}%"></div>
+      </div>
+    `;
+    dList.appendChild(div);
+  });
+}
+
+// ═══════════ OBSERVABILITY ═══════════
+function renderObservability() {
+  // 1. Render Infra Stats
+  const infraGrid = document.getElementById('infra-stats-grid');
+  infraGrid.innerHTML = '';
+  
+  const infraMapping = [
+    { key: 'vpn', icon: '🔒', label: 'VPN Status', val: OBSERVABILITY_DATA.infra.vpn.status, sub: OBSERVABILITY_DATA.infra.vpn.latency, color: 'purple' },
+    { key: 'ssh', icon: '🔑', label: 'SSH Access', val: OBSERVABILITY_DATA.infra.ssh.status, sub: \`\${OBSERVABILITY_DATA.infra.ssh.activeConnections} ativos\`, color: 'blue' },
+    { key: 'network', icon: '📡', label: 'Network', val: OBSERVABILITY_DATA.infra.network.status, sub: OBSERVABILITY_DATA.infra.network.throughput, color: 'teal' },
+  ];
+
+  infraMapping.forEach(item => {
+    const card = document.createElement('div');
+    card.className = \`stat-card \${item.color}\`;
+    card.innerHTML = \`
+      <div class="stat-icon">\${item.icon}</div>
+      <div class="stat-value">\${item.val}</div>
+      <div class="stat-label">\${item.label}</div>
+      <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 4px;">\${item.sub}</div>
+    \`;
+    infraGrid.appendChild(card);
+  });
+
+  // 2. Render Queues Table
+  const qBody = document.getElementById('table-queues-body');
+  qBody.innerHTML = '';
+  OBSERVABILITY_DATA.queues.forEach(q => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = \`
+      <td><strong>\${q.name}</strong></td>
+      <td>\${q.channel}</td>
+      <td>\${q.processed}</td>
+      <td>\${q.pending}</td>
+      <td><span class="status-badge \${q.status.toLowerCase()}">\${q.status}</span></td>
+    \`;
+    qBody.appendChild(tr);
+  });
+
+  // 3. Render Agents Table
+  const aBody = document.getElementById('table-agents-body');
+  aBody.innerHTML = '';
+  OBSERVABILITY_DATA.agents.forEach(a => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = \`
+      <td><strong>\${a.name}</strong></td>
+      <td>\${a.segment}</td>
+      <td>\${a.task}</td>
+      <td>\${a.uptime}</td>
+      <td><span class="status-badge \${a.status.toLowerCase()}">\${a.status}</span></td>
+    \`;
+    aBody.appendChild(tr);
+  });
+}
+

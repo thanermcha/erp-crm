@@ -259,3 +259,24 @@ const CAMPAIGNS = [
     dailyLimit: 25,
   },
 ];
+
+// ── Observability Mock Data ──
+const OBSERVABILITY_DATA = {
+  infra: {
+    vpn: { status: 'ONLINE', latency: '45ms', uptime: '99.9%' },
+    ssh: { status: 'SECURE', activeConnections: 3, lastAudit: '10 min ago' },
+    network: { status: 'STABLE', queueSize: 12, throughput: '150 req/s' },
+  },
+  queues: [
+    { name: 'Q-AGRO-WHATSAPP', channel: 'WhatsApp', processed: 450, pending: 12, status: 'HEALTHY' },
+    { name: 'Q-AGENTS-EMAIL', channel: 'Email', processed: 1200, pending: 5, status: 'HEALTHY' },
+    { name: 'Q-ENTERPRISE-MIX', channel: 'Omni', processed: 890, pending: 45, status: 'WARNING' },
+    { name: 'Q-BUSINESS-WHATSAPP', channel: 'WhatsApp', processed: 320, pending: 0, status: 'IDLE' },
+  ],
+  agents: [
+    { name: 'Agent-Agro-Sender', segment: 'agro', task: 'Disparo WA', uptime: '4h 12m', status: 'RUNNING' },
+    { name: 'Agent-Agents-Mail', segment: 'agents', task: 'Disparo Email', uptime: '12h 0m', status: 'RUNNING' },
+    { name: 'Agent-Ent-Router', segment: 'enterprise', task: 'Roteamento', uptime: '1d 4h', status: 'RUNNING' },
+    { name: 'Agent-Bus-Sync', segment: 'business', task: 'Sincronização CRM', uptime: '5m', status: 'RESTARTING' },
+  ]
+};

@@ -19,7 +19,7 @@ along with this software (see the LICENSE.md file). If not, see
         enumTypeId="UserGroupType" />
     <moqui.security.UserGroup userGroupId="GROWERP_M_SYSTEM" description="System Admin"
         groupTypeEnumId="GROWERPMOBILE" />
-    <moqui.security.UserGroupMember userGroupId="GROWERP_M_SYSTEM" userId="SystemSupport"
+    <moqui.security.UserGroupMember userGroupId="GROWERP_M_SYSTEM" userId="SYSTEM_SUPPORT"
         fromDate="1265184000000" />
     <moqui.security.UserGroup userGroupId="GROWERP_M_ADMIN" description="Admin"
         groupTypeEnumId="GROWERPMOBILE">
@@ -54,7 +54,7 @@ along with this software (see the LICENSE.md file). If not, see
         inheritAuthz="Y" artifactName="component://growerp/screen/rest.xml" />
 
     <!-- Full company permissions for the ADMIN and system user group -->
-    <moqui.security.ArtifactAuthz artifactAuthzId="GROWERPAPI_AUTHZ_ADMIN_SYS" userGroupId="ADMIN"
+    <moqui.security.ArtifactAuthz artifactAuthzId="GROWERPAPI_AUTHZ_MOQUI_ADMIN" userGroupId="ADMIN"
         artifactGroupId="GROWERP_API" authzTypeEnumId="AUTHZT_ALWAYS" authzActionEnumId="AUTHZA_ALL" />
 
     <moqui.security.ArtifactAuthz artifactAuthzId="GROWERPAPI_AUTHZ_ADMIN_SYS"

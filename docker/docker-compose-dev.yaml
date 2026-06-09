@@ -6,8 +6,11 @@ services:
     container_name: nginx
     restart: always
     ports:
-      - 80:80
-      - 443:443
+      # Host port 80/443 may already be used on developer machines.
+      # Use alternate ports so the stack can come up without requiring
+      # host-level service changes.
+      - 8080:80
+      - 8443:443
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./certs:/etc/nginx/certs
@@ -26,7 +29,11 @@ services:
     #command: conf=conf/MoquiProductionConf.xml
     restart: always
     depends_on:
-      - moqui-database
+      moqui-database:
+        condition: service_healthy
+    ports:
+      # Stable direct endpoint for Flutter clients launched from the local IDE.
+      - 127.0.0.1:18082:80
     volumes:
       #- ./MoquiProductionConf.xml:/opt/moqui/runtime/conf/MoquiProductionConf.xml
       #- ./runtime/lib:/opt/moqui/runtime/lib
@@ -59,8 +66,8 @@ services:
       - webapp_https_enabled=true
       # nginx-proxy populates X-Real-IP with remote_addr by default, better option for outer proxy than X-Forwarded-For which defaults to proxy_add_x_forwarded_for
       - webapp_client_ip_header=X-Real-IP
-      - default_locale=en_US
-      - default_time_zone=US/Pacific
+      - default_locale=pt_BR
+      - default_time_zone=America/Belem
       - DB_DATA=INSTALL
       # do not use quotes here
       - SMTP_USER=
@@ -89,6 +96,11 @@ services:
       - POSTGRES_DB_SCHEMA=public
       - POSTGRES_USER=moqui
       - POSTGRES_PASSWORD=moqui
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U moqui -d moqui"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
     # PGDATA, POSTGRES_INITDB_ARGS
 
   admin:
@@ -101,10 +113,24 @@ services:
     expose:
       - 80
     volumes:
-      - ./app_settings.json:/usr/share/nginx/html/assets/assets/cfg/app_settings.json
+      - ./app_settings-admin-dev.json:/usr/share/nginx/html/assets/assets/cfg/app_settings.json:ro
       #- ./nginx/html:/usr/share/nginx/html #flutter build web in app dir and copy web dir in nginx.html
     environment:
       - VIRTUAL_HOST=admin.growerp.local
+
+  support:
+    container_name: support
+    image: growerp/support
+    build:
+      context: ../flutter
+      dockerfile: ../flutter/packages/support/Dockerfile
+    restart: unless-stopped
+    expose:
+      - 80
+    volumes:
+      - ./app_settings-support-dev.json:/usr/share/nginx/html/assets/assets/cfg/app_settings.json:ro
+    environment:
+      - VIRTUAL_HOST=support.growerp.local
 
   health:
     container_name: health
@@ -116,6 +142,6 @@ services:
     expose:
       - 80
     volumes:
-      - ./app_settings.json:/usr/share/nginx/html/assets/assets/cfg/app_settings.json
+      - ./app_settings-health-dev.json:/usr/share/nginx/html/assets/assets/cfg/app_settings.json:ro
     environment:
       - VIRTUAL_HOST=health.growerp.local

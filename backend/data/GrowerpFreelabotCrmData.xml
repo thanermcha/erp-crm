@@ -10,7 +10,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.marketing.MarketingPersona
     personaId="BLAH_PERSONA_AGRO"
     pseudoId="blah-agro-persona"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     name="Agronegocio Decision Maker"
     demographics="Owners and managers of agribusiness operations that need clearer lead flow, follow-up, and conversion tracking."
     painPoints="Disorganized lead intake, slow response times, manual WhatsApp follow-up, and weak attribution between campaigns and sales."
@@ -22,7 +22,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.marketing.MarketingPersona
     personaId="BLAH_PERSONA_AGENTS"
     pseudoId="blah-agents-persona"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     name="Agency Growth Lead"
     demographics="Owners and operators of lead generation agencies that need repeatable delivery and visible pipeline health."
     painPoints="Campaign chaos, duplicated contacts, inconsistent messaging, and no clear separation between clients or squads."
@@ -34,7 +34,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.marketing.MarketingPersona
     personaId="BLAH_PERSONA_ENTERPRISE"
     pseudoId="blah-enterprise-persona"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     name="Enterprise Revenue Operations"
     demographics="Enterprise teams that require governance, segmentation, and predictable reporting across channels."
     painPoints="Fragmented workflows, manual data hygiene, and poor visibility into campaign performance."
@@ -46,7 +46,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.marketing.MarketingPersona
     personaId="BLAH_PERSONA_BUSINESS"
     pseudoId="blah-business-persona"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     name="SMB Business Owner"
     demographics="Small and mid-sized business owners that need a clear, low-friction CRM entry point."
     painPoints="Too many tools, little consistency, and no clean handoff from lead to opportunity."
@@ -58,7 +58,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.marketing.MarketingPersona
     personaId="BLAH_PERSONA_FRANQUIA"
     pseudoId="blah-franquia-persona"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     name="Franchise Expansion Lead"
     demographics="Franchise owners and expansion managers who need consistent messaging and distributed lead handling."
     painPoints="Hard to keep brand consistency across units, difficult to track inquiries, and slow qualification."
@@ -70,7 +70,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.marketing.MarketingPersona
     personaId="BLAH_PERSONA_SOLUCOES"
     pseudoId="blah-solucoes-persona"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     name="Solutions Buyer"
     demographics="Decision makers searching for specific solutions and wanting a direct next step."
     painPoints="Generic pitches, unclear value propositions, and landing pages that do not match intent."
@@ -83,7 +83,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.landing.LandingPage
     landingPageId="BLAH_LP_AGRO"
     pseudoId="blah-agro-lp"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     title="Agronegocio | Blah Software"
     hookType="results"
     headline="More qualified agribusiness leads, with follow-up that does not get lost."
@@ -100,7 +100,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.landing.LandingPage
     landingPageId="BLAH_LP_AGENTS"
     pseudoId="blah-agents-lp"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     title="Agents | Blah Software"
     hookType="problem"
     headline="Segmented outreach for agencies that need clean delivery and clean reporting."
@@ -117,7 +117,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.landing.LandingPage
     landingPageId="BLAH_LP_ENTERPRISE"
     pseudoId="blah-enterprise-lp"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     title="Enterprise | Blah Software"
     hookType="results"
     headline="Governed, auditable segment pages for enterprise demand generation."
@@ -134,7 +134,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.landing.LandingPage
     landingPageId="BLAH_LP_BUSINESS"
     pseudoId="blah-business-lp"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     title="Business | Blah Software"
     hookType="problem"
     headline="A simple CRM path for businesses that want more response and less manual work."
@@ -151,7 +151,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.landing.LandingPage
     landingPageId="BLAH_LP_FRANQUIA"
     pseudoId="blah-franquia-lp"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     title="Franquia | Blah Software"
     hookType="results"
     headline="Standardize franchise inquiries without losing local context."
@@ -168,7 +168,7 @@ and campaign drafts for the Blah Software audiences.
   <growerp.landing.LandingPage
     landingPageId="BLAH_LP_SOLUCOES"
     pseudoId="blah-solucoes-lp"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     title="Solucoes | Blah Software"
     hookType="results"
     headline="Route each intent to the right message, page, and follow-up."
@@ -440,7 +440,7 @@ and campaign drafts for the Blah Software audiences.
   <mantle.marketing.campaign.MarketingCampaign
     marketingCampaignId="BLAH_CAMP_AGRO"
     pseudoId="blah-agro-campaign"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     campaignName="Blah Agro - WhatsApp and Email"
     campaignSummary="Segmented outreach for agribusiness buyers with a dedicated landing page."
     platforms="[&quot;EMAIL&quot;,&quot;WHATSAPP&quot;]"
@@ -459,7 +459,7 @@ and campaign drafts for the Blah Software audiences.
   <mantle.marketing.campaign.MarketingCampaign
     marketingCampaignId="BLAH_CAMP_AGENTS"
     pseudoId="blah-agents-campaign"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     campaignName="Blah Agents - WhatsApp and Email"
     campaignSummary="Agency outreach with client isolation and a dedicated landing path."
     platforms="[&quot;EMAIL&quot;,&quot;WHATSAPP&quot;]"
@@ -478,7 +478,7 @@ and campaign drafts for the Blah Software audiences.
   <mantle.marketing.campaign.MarketingCampaign
     marketingCampaignId="BLAH_CAMP_ENTERPRISE"
     pseudoId="blah-enterprise-campaign"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     campaignName="Blah Enterprise - WhatsApp and Email"
     campaignSummary="Enterprise demand generation with governance and audit-friendly copy."
     platforms="[&quot;EMAIL&quot;,&quot;WHATSAPP&quot;]"
@@ -497,7 +497,7 @@ and campaign drafts for the Blah Software audiences.
   <mantle.marketing.campaign.MarketingCampaign
     marketingCampaignId="BLAH_CAMP_BUSINESS"
     pseudoId="blah-business-campaign"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     campaignName="Blah Business - WhatsApp and Email"
     campaignSummary="Small business entry flow with a short route from interest to contact."
     platforms="[&quot;EMAIL&quot;,&quot;WHATSAPP&quot;]"
@@ -516,7 +516,7 @@ and campaign drafts for the Blah Software audiences.
   <mantle.marketing.campaign.MarketingCampaign
     marketingCampaignId="BLAH_CAMP_FRANQUIA"
     pseudoId="blah-franquia-campaign"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     campaignName="Blah Franquia - WhatsApp and Email"
     campaignSummary="Franchise expansion with local routing and centralized visibility."
     platforms="[&quot;EMAIL&quot;,&quot;WHATSAPP&quot;]"
@@ -535,7 +535,7 @@ and campaign drafts for the Blah Software audiences.
   <mantle.marketing.campaign.MarketingCampaign
     marketingCampaignId="BLAH_CAMP_SOLUCOES"
     pseudoId="blah-solucoes-campaign"
-    ownerPartyId="DEMO"
+    ownerPartyId="_NA_"
     campaignName="Blah Solucoes - WhatsApp and Email"
     campaignSummary="Solution-led page with a direct message and a clean conversion path."
     platforms="[&quot;EMAIL&quot;,&quot;WHATSAPP&quot;]"

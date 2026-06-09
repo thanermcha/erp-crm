@@ -1,0 +1,12 @@
+services:
+  moqui-server:
+    networks:
+      default:
+      openclaw-lan:
+        aliases:
+          - growerp-backend
+
+networks:
+  openclaw-lan:
+    external: true
+    name: openclaw-ai_openclaw-lan

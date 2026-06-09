@@ -24,7 +24,8 @@ ARG BRANCH=master
 USER root
 
 # Install linux dependencies
-RUN apt-get update && \
+RUN apt-get -o Acquire::AllowInsecureRepositories=true \
+    -o Acquire::AllowDowngradeToInsecureRepositories=true update && \
     apt-get install -y git zip gdb libstdc++6 \
     fonts-droid-fallback nano sed && \
     apt-get clean
@@ -76,6 +77,10 @@ WORKDIR /root
 RUN git clone -b $BRANCH https://github.com/growerp/growerp.git
 WORKDIR /root/growerp
 RUN git submodule update --init --recursive
+# The clone provides the framework/submodule baseline. Replace its GrowERP
+# component with the current working tree so local services and seeds are built.
+RUN rm -rf /root/growerp/backend
+COPY backend /root/growerp/backend
 # Override setup-backend.sh from build context (may contain unpushed fixes)
 COPY setup-backend.sh /root/growerp/setup-backend.sh
 # Clone moqui-runtime + create symlinks for custom components
@@ -141,10 +146,9 @@ COPY --from=build-env /opt/moqui /opt/moqui
 RUN rm -rf /opt/moqui/runtime
 COPY --from=build-env /root/growerp/moqui/runtime /opt/moqui/runtime
 
-# exposed as volumes for configuration purposes
-VOLUME ["/opt/moqui/runtime/conf", "/opt/moqui/runtime/lib", "/opt/moqui/runtime/classes", "/opt/moqui/runtime/component"]
-# exposed as volumes to persist data outside the container, recommended
-VOLUME ["/opt/moqui/runtime/log", "/opt/moqui/runtime/txlog", "/opt/moqui/runtime/sessions", "/opt/moqui/runtime/db", "/opt/moqui/runtime/elasticsearch"]
+# Keep the application runtime immutable. Persistent state is declared
+# explicitly by Compose (PostgreSQL and sessions), avoiding stale anonymous
+# volumes that hide newly built components and configuration.
 
 # Main Servlet Container Port
 EXPOSE 80

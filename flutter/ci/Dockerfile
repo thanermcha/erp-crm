@@ -25,10 +25,12 @@ USER root
 
 # Install Linux desktop build dependencies and xvfb for headless display
 # Enable universe repo (required on Ubuntu 24.04+ for cmake, gdb, clang, etc.)
-RUN apt-get update && \
+RUN apt-get -o Acquire::AllowInsecureRepositories=true \
+    -o Acquire::AllowDowngradeToInsecureRepositories=true update && \
     apt-get install -y --no-install-recommends software-properties-common && \
     add-apt-repository universe && \
-    apt-get update && \
+    apt-get -o Acquire::AllowInsecureRepositories=true \
+      -o Acquire::AllowDowngradeToInsecureRepositories=true update && \
     apt-get install -y --no-install-recommends \
     git zip gdb libstdc++6 fonts-noto nano sed \
     xvfb libgtk-3-dev ninja-build cmake clang lld llvm pkgconf liblzma-dev \

@@ -16,7 +16,7 @@ along with this software (see the LICENSE.md file). If not, see
         <!-- NOTE 1265184000000 = 2010-02-03 00:00:00 US/Pacific -->
 
         <!-- ========== Support System User ========== -->
-        <!-- password=qqqqqq9! -->
+        <!-- password=moqui -->
         <mantle.party.Party partyId="SYSTEM_SUPPORT" partyTypeEnumId="PtyPerson" />
         <mantle.party.Person partyId="SYSTEM_SUPPORT" firstName="System" lastName="Support" />
         <moqui.security.UserAccount
@@ -33,7 +33,9 @@ along with this software (see the LICENSE.md file). If not, see
         <moqui.security.UserLoginHistory userId="SYSTEM_SUPPORT" fromDate="1265184000000"
                 successfulLogin="Y" />
         <mantle.party.PartyClassificationAppl partyId="SYSTEM_SUPPORT"
-                partyClassificationId="AppSupport" />
+                partyClassificationId="AppSupport" fromDate="1265184000000" />
+        <mantle.party.PartyClassificationAppl partyId="SYSTEM_SUPPORT"
+                partyClassificationId="AppAdmin" fromDate="1265184000000" />
 
         <!-- ========== Artifact Tarpit Example ========== -->
         <moqui.security.ArtifactGroup artifactGroupId="ALL_SCREENS" description="All Screens" />
