@@ -1,4 +1,12 @@
 services:
+  nginx-proxy:
+    volumes:
+      - ../crm-dashboard:/opt/crm-dashboard:ro
+      - ./nginx/crm-dashboard.conf:/etc/nginx/conf.d/crm-dashboard.conf:ro
+    ports:
+      - 80:80
+      - 443:443
+
   moqui-server:
     ports:
       - 127.0.0.1:8080:80
