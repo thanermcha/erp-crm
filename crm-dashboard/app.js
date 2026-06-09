@@ -329,19 +329,19 @@ function renderObservability() {
   
   const infraMapping = [
     { key: 'vpn', icon: '🔒', label: 'VPN Status', val: OBSERVABILITY_DATA.infra.vpn.status, sub: OBSERVABILITY_DATA.infra.vpn.latency, color: 'purple' },
-    { key: 'ssh', icon: '🔑', label: 'SSH Access', val: OBSERVABILITY_DATA.infra.ssh.status, sub: \`\${OBSERVABILITY_DATA.infra.ssh.activeConnections} ativos\`, color: 'blue' },
+    { key: 'ssh', icon: '🔑', label: 'SSH Access', val: OBSERVABILITY_DATA.infra.ssh.status, sub: `${OBSERVABILITY_DATA.infra.ssh.activeConnections} ativos`, color: 'blue' },
     { key: 'network', icon: '📡', label: 'Network', val: OBSERVABILITY_DATA.infra.network.status, sub: OBSERVABILITY_DATA.infra.network.throughput, color: 'teal' },
   ];
 
   infraMapping.forEach(item => {
     const card = document.createElement('div');
-    card.className = \`stat-card \${item.color}\`;
-    card.innerHTML = \`
-      <div class="stat-icon">\${item.icon}</div>
-      <div class="stat-value">\${item.val}</div>
-      <div class="stat-label">\${item.label}</div>
-      <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 4px;">\${item.sub}</div>
-    \`;
+    card.className = `stat-card ${item.color}`;
+    card.innerHTML = `
+      <div class="stat-icon">${item.icon}</div>
+      <div class="stat-value">${item.val}</div>
+      <div class="stat-label">${item.label}</div>
+      <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 4px;">${item.sub}</div>
+    `;
     infraGrid.appendChild(card);
   });
 
@@ -350,13 +350,13 @@ function renderObservability() {
   qBody.innerHTML = '';
   OBSERVABILITY_DATA.queues.forEach(q => {
     const tr = document.createElement('tr');
-    tr.innerHTML = \`
-      <td><strong>\${q.name}</strong></td>
-      <td>\${q.channel}</td>
-      <td>\${q.processed}</td>
-      <td>\${q.pending}</td>
-      <td><span class="status-badge \${q.status.toLowerCase()}">\${q.status}</span></td>
-    \`;
+    tr.innerHTML = `
+      <td><strong>${q.name}</strong></td>
+      <td>${q.channel}</td>
+      <td>${q.processed}</td>
+      <td>${q.pending}</td>
+      <td><span class="status-badge ${q.status.toLowerCase()}">${q.status}</span></td>
+    `;
     qBody.appendChild(tr);
   });
 
@@ -365,13 +365,13 @@ function renderObservability() {
   aBody.innerHTML = '';
   OBSERVABILITY_DATA.agents.forEach(a => {
     const tr = document.createElement('tr');
-    tr.innerHTML = \`
-      <td><strong>\${a.name}</strong></td>
-      <td>\${a.segment}</td>
-      <td>\${a.task}</td>
-      <td>\${a.uptime}</td>
-      <td><span class="status-badge \${a.status.toLowerCase()}">\${a.status}</span></td>
-    \`;
+    tr.innerHTML = `
+      <td><strong>${a.name}</strong></td>
+      <td>${a.segment}</td>
+      <td>${a.task}</td>
+      <td>${a.uptime}</td>
+      <td><span class="status-badge ${a.status.toLowerCase()}">${a.status}</span></td>
+    `;
     aBody.appendChild(tr);
   });
 }
