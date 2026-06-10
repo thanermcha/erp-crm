@@ -1,0 +1,12 @@
+[Unit]
+Description=Cloudflare Tunnel for GrowERP
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/cloudflared tunnel run growerp-backend
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
