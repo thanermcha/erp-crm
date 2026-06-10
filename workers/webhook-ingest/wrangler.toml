@@ -1,0 +1,19 @@
+name = "webhook-ingest"
+main = "src/index.py"
+compatibility_date = "2025-05-01"
+compatibility_flags = ["python_workers"]
+
+[vars]
+BACKEND_URL = "https://webhooks.blahsoftware.ia.br"
+HMAC_SECRET = ""
+OWNER_PARTY_ID = "BLAH_SOFT_OWNER"
+
+[env.production]
+vars = { ENVIRONMENT = "production" }
+
+[env.staging]
+vars = { ENVIRONMENT = "staging", BACKEND_URL = "https://staging-webhooks.blahsoftware.ia.br" }
+
+routes = [
+  { pattern = "webhooks.blahsoftware.ia.br/*", zone_id = "" }
+]
