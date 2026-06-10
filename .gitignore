@@ -35,3 +35,6 @@ AuthKey_*.p8
 flutter/packages/*/build/
 flutter/packages/*/.dart_tool/
 flutter/packages/growerp_catalog/example/macos/Flutter/ephemeral/
+
+# Google Service Account credentials
+docker/webhook-server/credentials/google-service-account.json
