@@ -1,0 +1,36 @@
+id: io.growerp.crm.blah
+runtime: org.gnome.Platform
+runtime-version: "47"
+sdk: org.gnome.Sdk
+command: growerp-crm
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --share=network
+  - --device=dri
+  - --filesystem=home
+  - --env=GROWERP_API_URL=https://backend.growerp.local/rest/s1/growerp/100
+
+modules:
+  - name: growerp-crm
+    buildsystem: simple
+    build-commands:
+      - flutter build linux --release -v
+      - install -Dm755 build/linux/*/release/bundle/growerp_crm /app/bin/growerp-crm
+      - install -Dm644 io.growerp.crm.blah.metainfo.xml /app/share/metainfo/
+      - install -Dm644 io.growerp.crm.blah.desktop /app/share/applications/
+      - install -Dm644 io.growerp.crm.blah.png /app/share/icons/hicolor/256x256/apps/
+    sources:
+      - type: dir
+        path: ..
+    modules:
+      - name: flutter
+        buildsystem: simple
+        build-commands:
+          - git clone https://github.com/flutter/flutter.git -b stable /app/flutter
+          - /app/flutter/bin/flutter config --enable-linux-desktop
+        sources:
+          - type: archive
+            url: https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.33.0-stable.tar.xz
+            sha256: ""

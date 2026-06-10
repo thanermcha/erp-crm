@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.growerp.crm.blah</id>
+  <name>Blah Software CRM</name>
+  <summary>GrowERP CRM para Blah Software</summary>
+  <developer_name>Blah Software</developer_name>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>CC0-1.0</project_license>
+  <description>
+    <p>Cliente desktop do GrowERP CRM para Blah Software. Gerencie leads,
+    oportunidades, landing pages e campanhas de outreach.</p>
+  </description>
+  <categories>
+    <category>Office</category>
+    <category>Business</category>
+  </categories>
+  <url type="homepage">https://blahsoftware.ia.br</url>
+  <releases>
+    <release version="1.0.0" date="2026-06-10" />
+  </releases>
+</component>

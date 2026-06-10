@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Blah Software CRM
+Comment=GrowERP CRM para Blah Software
+Exec=growerp-crm
+Icon=io.growerp.crm.blah
+Terminal=false
+Type=Application
+Categories=Office;Business;
+StartupNotify=true
