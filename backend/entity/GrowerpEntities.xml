@@ -387,3 +387,75 @@ along with this software (see the LICENSE.md file). If not, see
     </entity>
 
 </entities>
+
+    <!-- ===================== CRM Pipeline ===================== -->
+
+    <entity entity-name="SourceRecord" package="growerp.general" sequence-primary-prefix="sr">
+        <field name="sourceRecordId" type="id" is-pk="true" />
+        <field name="ownerPartyId" type="id">
+            <description>Tenant owner (e.g., BLAH_SOFT_OWNER)</description>
+        </field>
+        <field name="sourceEnumId" type="id">
+            <description>Origin: HubSpot, CSV, Gmail, WordPress, Manual</description>
+        </field>
+        <field name="rawPayload" type="text-very-long">
+            <description>Original JSON payload received</description>
+        </field>
+        <field name="statusId" type="id">
+            <description>staged | hygienized | imported | error | duplicate</description>
+        </field>
+        <field name="occurrenceCount" type="number-integer" default="1">
+            <description>Times this record was received</description>
+        </field>
+        <field name="sanitizedAt" type="date-time" />
+        <field name="importedAt" type="date-time" />
+        <field name="partyId" type="id">
+            <description>Reference to created/updated Party in GrowERP</description>
+        </field>
+        <field name="errorFlag" type="text-indicator" />
+        <field name="lastErrorMessage" type="text-long" />
+        <field name="lastRawPayload" type="text-very-long">
+            <description>JSON from most recent occurrence</description>
+        </field>
+        <relationship type="one" title="Owner" related="mantle.party.Party" short-alias="owner">
+            <key-map field-name="ownerPartyId" />
+        </relationship>
+        <relationship type="one" title="Source" related="moqui.basic.Enumeration" short-alias="sourceType">
+            <key-map field-name="sourceEnumId" />
+        </relationship>
+        <index name="SOURCERECORD_STATUS" unique="false">
+            <index-field name="statusId" />
+        </index>
+        <index name="SOURCERECORD_PARTY" unique="false">
+            <index-field name="partyId" />
+        </index>
+        <seed-data>
+            <moqui.basic.EnumerationType description="Source Record Origin"
+                enumTypeId="SourceRecordOrigin" />
+            <moqui.basic.Enumeration enumId="SrcHubSpot" description="HubSpot CRM"
+                enumTypeId="SourceRecordOrigin" />
+            <moqui.basic.Enumeration enumId="SrcCSV" description="CSV Upload"
+                enumTypeId="SourceRecordOrigin" />
+            <moqui.basic.Enumeration enumId="SrcGmail" description="Gmail API Ingest"
+                enumTypeId="SourceRecordOrigin" />
+            <moqui.basic.Enumeration enumId="SrcWordPress" description="WordPress Webhook"
+                enumTypeId="SourceRecordOrigin" />
+            <moqui.basic.Enumeration enumId="SrcManual" description="Manual Entry"
+                enumTypeId="SourceRecordOrigin" />
+            <moqui.basic.Enumeration enumId="SrcMeta" description="Facebook Meta Leads"
+                enumTypeId="SourceRecordOrigin" />
+
+            <moqui.basic.EnumerationType description="Source Record Status"
+                enumTypeId="SourceRecordStatus" />
+            <moqui.basic.Enumeration enumId="SrcStaged" description="Received, awaiting processing"
+                enumTypeId="SourceRecordStatus" />
+            <moqui.basic.Enumeration enumId="SrcHygienized" description="Cleaned and normalized"
+                enumTypeId="SourceRecordStatus" />
+            <moqui.basic.Enumeration enumId="SrcImported" description="Successfully pushed to GrowERP"
+                enumTypeId="SourceRecordStatus" />
+            <moqui.basic.Enumeration enumId="SrcError" description="Processing failed"
+                enumTypeId="SourceRecordStatus" />
+            <moqui.basic.Enumeration enumId="SrcDuplicate" description="Matched existing record, skipped"
+                enumTypeId="SourceRecordStatus" />
+        </seed-data>
+    </entity>

@@ -2187,3 +2187,216 @@ along with this software (see the LICENSE.md file). If not, see
     </service>
 
 </services>
+
+    <!-- ====== CRM Pipeline: Bulk Lead Import ====== -->
+    <service verb="import" noun="Leads">
+        <description>Import leads from CRM pipeline. Accepts JSON array, applies hygiene, dedup, upsert.</description>
+        <in-parameters>
+            <parameter name="leads" required="true" type="List">
+                <parameter name="lead" type="Map">
+                    <parameter name="email" type="text-medium" />
+                    <parameter name="phone" type="text-medium" />
+                    <parameter name="firstName" type="text-medium" />
+                    <parameter name="lastName" type="text-medium" />
+                    <parameter name="company" type="text-medium" />
+                    <parameter name="website" type="text-medium" />
+                    <parameter name="sourceEnumId" type="id" />
+                    <parameter name="opportunityStageId" type="id" />
+                    <parameter name="tags" type="List" />
+                    <parameter name="notes" type="text-long" />
+                    <parameter name="rawPayload" type="text-very-long" />
+                </parameter>
+            </parameter>
+            <parameter name="ownerPartyId" type="id" />
+            <parameter name="sourceEnumId" type="id" default="SrcCSV" />
+        </in-parameters>
+        <out-parameters>
+            <parameter name="leadsImported" type="Integer" />
+            <parameter name="leadsUpdated" type="Integer" />
+            <parameter name="leadsSkipped" type="Integer" />
+            <parameter name="errorMessages" type="text-very-long" />
+        </out-parameters>
+        <actions>
+            <script>System.out.println(">>>> Importing " + leads?.size() + " leads")</script>
+            <set field="leadsImported" type="Integer" value="0" />
+            <set field="leadsUpdated" type="Integer" value="0" />
+            <set field="leadsSkipped" type="Integer" value="0" />
+            <set field="errorMessages" type="List" />
+
+            <!-- Resolve owner party -->
+            <if condition="!ownerPartyId">
+                <service-call name="growerp.100.GeneralServices100.get#RelatedCompanyAndOwner"
+                    out-map="context" />
+                <set field="ownerPartyId" from="ownerPartyId ?: companyPartyId" />
+            </if>
+            <if condition="!ownerPartyId">
+                <return error="true" message="No ownerPartyId resolved. Provide ownerPartyId or login first." />
+            </if>
+
+            <iterate list="leads" entry="lead">
+                <script><![CDATA[
+                    // Hygiene
+                    def email = lead.email?.toString()?.trim()?.toLowerCase()
+                    def phone = lead.phone?.toString()?.trim()
+                    def firstName = lead.firstName?.toString()?.trim()
+                    def lastName = lead.lastName?.toString()?.trim()
+                    def company = lead.company?.toString()?.trim()
+                    def website = lead.website?.toString()?.trim()
+
+                    // Clean company suffixes
+                    if (company) {
+                        company = company.replaceAll(/(?i)\s*(LTDA|S/?A|ME|EPP|EIRELI|SS?)\s*\$/, '').trim()
+                        if (company.isEmpty()) company = lead.company.toString().trim()
+                    }
+
+                    // E.164 phone normalization
+                    if (phone) {
+                        phone = phone.replaceAll(/[\s\-()\.]/, '')
+                        if (phone.startsWith('0') && phone.length() > 2) phone = phone.substring(1)
+                        if (!phone.startsWith('+')) {
+                            if (phone.length() >= 12) phone = '+' + phone
+                            else if (phone.length() >= 10) phone = '+55' + phone
+                        }
+                    }
+
+                    // Extract domain from email or website
+                    def domain = null
+                    if (email && email.contains('@') && !email.endsWith('@gmail.com') && !email.endsWith('@yahoo.com') && !email.endsWith('@hotmail.com') && !email.endsWith('@outlook.com')) {
+                        domain = email.substring(email.indexOf('@') + 1)
+                    }
+                    if (!domain && website) {
+                        def m = website =~ /https?:\/\/(?:www\.)?([^\/]+)/
+                        if (m) domain = m[0][1]
+                    }
+
+                    lead.cleanEmail = email
+                    lead.cleanPhone = phone
+                    lead.cleanCompany = company
+                    lead.cleanDomain = domain
+                    lead.cleanFirstName = firstName
+                    lead.cleanLastName = lastName ?: firstName
+                ]]></script>
+
+                <!-- Dedup: email match -->
+                <if condition="lead.cleanEmail">
+                    <entity-find entity-name="mantle.party.contact.ContactMech" list="emailMeches">
+                        <econdition field-name="contactMechTypeId" value="EmailAddress" />
+                        <econdition field-name="infoString" from="lead.cleanEmail" />
+                    </entity-find>
+                    <if condition="emailMeches">
+                        <set field="matchedContactMech" from="emailMeches[0]" />
+                    </if>
+                </if>
+
+                <!-- Dedup: phone match -->
+                <if condition="!matchedContactMech && lead.cleanPhone">
+                    <entity-find entity-name="mantle.party.contact.TelecomNumber" list="phoneNums">
+                        <econdition field-name="contactNumber" from="lead.cleanPhone" />
+                    </entity-find>
+                    <if condition="phoneNums">
+                        <entity-find entity-name="mantle.party.contact.ContactMech" list="phoneMeches">
+                            <econdition field-name="contactMechId" from="phoneNums[0].contactMechId" />
+                        </entity-find>
+                        <if condition="phoneMeches">
+                            <set field="matchedContactMech" from="phoneMeches[0]" />
+                        </if>
+                    </if>
+                </if>
+
+                <!-- Dedup: domain+company match -->
+                <if condition="!matchedContactMech && lead.cleanDomain && lead.cleanCompany">
+                    <entity-find entity-name="mantle.party.contact.ContactMech" list="webMeches">
+                        <econdition field-name="contactMechTypeId" value="WebAddress" />
+                        <econdition field-name="infoString" like="%${lead.cleanDomain}%" />
+                    </entity-find>
+                    <if condition="webMeches">
+                        <set field="matchedContactMech" from="webMeches[0]" />
+                    </if>
+                </if>
+
+                <!-- Resolve partyId or create -->
+                <if condition="matchedContactMech">
+                    <entity-find entity-name="mantle.party.contact.PartyContactMech" list="partyMeches">
+                        <econdition field-name="contactMechId" from="matchedContactMech.contactMechId" />
+                        <econdition field-name="thruDate" xsi-nil="true" />
+                    </entity-find>
+                    <if condition="partyMeches">
+                        <set field="partyId" from="partyMeches[0].partyId" />
+                    </if>
+                </if>
+
+                <if condition="partyId">
+                    <!-- UPDATE existing party -->
+                    <set field="leadsUpdated" from="leadsUpdated + 1" />
+                    <script>System.out.println(">>>> UPDATING party " + partyId + " from lead: " + lead.cleanEmail)</script>
+                <else>
+                    <!-- CREATE new Person -->
+                    <service-call name="create#mantle.party.Person" in-map="[ownerPartyId:ownerPartyId, firstName:lead.cleanFirstName, lastName:(lead.cleanLastName ?: lead.cleanFirstName)]" out-map="personResult" />
+                    <set field="partyId" from="personResult.partyId" />
+
+                    <!-- Create email ContactMech -->
+                    <if condition="lead.cleanEmail">
+                        <service-call name="create#mantle.party.contact.ContactMech" in-map="[contactMechTypeId:'EmailAddress', infoString:lead.cleanEmail]" out-map="contactMechResult" />
+                        <service-call name="create#mantle.party.contact.PartyContactMech" in-map="[partyId:partyId, contactMechId:contactMechResult.contactMechId, contactMechPurposeId:'PrimaryEmail', fromDate:ec.user.nowTimestamp]" />
+                    </if>
+
+                    <!-- Create phone ContactMech -->
+                    <if condition="lead.cleanPhone">
+                        <service-call name="create#mantle.party.contact.TelecomNumber" in-map="[contactMechTypeId:'TelecomNumber', countryCode:'55', contactNumber:lead.cleanPhone]" out-map="phoneResult" />
+                        <service-call name="create#mantle.party.contact.PartyContactMech" in-map="[partyId:partyId, contactMechId:phoneResult.contactMechId, contactMechPurposeId:'PrimaryPhone', fromDate:ec.user.nowTimestamp]" />
+                    </if>
+
+                    <!-- Create website ContactMech -->
+                    <if condition="lead.website">
+                        <service-call name="create#mantle.party.contact.ContactMech" in-map="[contactMechTypeId:'WebAddress', infoString:lead.website]" out-map="webResult" />
+                        <service-call name="create#mantle.party.contact.PartyContactMech" in-map="[partyId:partyId, contactMechId:webResult.contactMechId, contactMechPurposeId:'PrimaryWeb', fromDate:ec.user.nowTimestamp]" />
+                    </if>
+
+                    <!-- Link to owner organization -->
+                    <entity-find entity-name="mantle.party.PartyRelationship" list="existingRel">
+                        <econdition field-name="partyIdFrom" from="ownerPartyId" />
+                        <econdition field-name="partyIdTo" from="partyId" />
+                        <econdition field-name="roleTypeIdFrom" value="Organization" />
+                        <econdition field-name="roleTypeIdTo" value="Customer" />
+                        <econdition field-name="thruDate" xsi-nil="true" />
+                    </entity-find>
+                    <if condition="!existingRel">
+                        <service-call name="create#mantle.party.PartyRelationship" in-map="[partyIdFrom:ownerPartyId, partyIdTo:partyId, roleTypeIdFrom:'Organization', roleTypeIdTo:'Customer', fromDate:ec.user.nowTimestamp]" />
+                    </if>
+
+                    <set field="leadsImported" from="leadsImported + 1" />
+                    <script>System.out.println(">>>> CREATED party " + partyId + " from lead: " + lead.cleanEmail)</script>
+                </if>
+
+                <!-- Create/Update SalesOpportunity -->
+                <if condition="lead.opportunityStageId">
+                    <entity-find entity-name="mantle.sales.opportunity.SalesOpportunity" list="existingOpps">
+                        <econdition field-name="ownerPartyId" from="ownerPartyId" />
+                        <econdition field-name="partyId" from="partyId" />
+                        <econdition field-name="opportunityStageId" not-equals="ClosedLost" />
+                        <econdition field-name="opportunityStageId" not-equals="ClosedWon" />
+                    </entity-find>
+                    <if condition="!existingOpps">
+                        <service-call name="growerp.100.CrmServices100.create#SalesOpportunity" in-map="[partyId:partyId, opportunityName:((lead.cleanFirstName ?: '') + ' ' + (lead.cleanLastName ?: '') + ' - ' + (lead.cleanCompany ?: 'No Company')), opportunityStageId:lead.opportunityStageId, ownerPartyId:ownerPartyId, description:(lead.notes ?: '')]" />
+                    </if>
+                </if>
+
+                <!-- Save SourceRecord -->
+                <entity-find entity-name="growerp.general.SourceRecord" list="existingSrc">
+                    <econdition field-name="sourceEnumId" from="lead.sourceEnumId ?: sourceEnumId" />
+                    <econdition field-name="partyId" from="partyId" />
+                </entity-find>
+                <if condition="existingSrc">
+                    <set field="srcRec" from="existingSrc[0]" />
+                    <set field="srcRec.occurrenceCount" from="(srcRec.occurrenceCount ?: 0) + 1" />
+                    <set field="srcRec.lastRawPayload" from="lead.rawPayload ?: ''" />
+                    <entity-update value-field="srcRec" />
+                <else>
+                    <service-call name="create#growerp.general.SourceRecord" in-map="[ownerPartyId:ownerPartyId, sourceEnumId:(lead.sourceEnumId ?: sourceEnumId), rawPayload:(lead.rawPayload ?: ''), statusId:'SrcImported', partyId:partyId, importedAt:ec.user.nowTimestamp]" />
+                </if>
+            </iterate>
+
+            <set field="errorMessages" from="errorMessages.join('; ')" />
+            <script>System.out.println(">>>> Import complete: " + leadsImported + " created, " + leadsUpdated + " updated, " + leadsSkipped + " skipped")</script>
+        </actions>
+    </service>
