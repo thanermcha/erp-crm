@@ -16,3 +16,24 @@ services:
     environment:
       - DB_DATA=INSTALL
       - webapp_https_enabled=false
+
+  # ── Webhook Server: HubSpot ingest -> SQLite staging -> Moqui REST ──
+  webhook-server:
+    build:
+      context: ./webhook-server
+    container_name: webhook-server
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5000:5000"
+    volumes:
+      - ./webhook-server/data:/data
+    environment:
+      - MOQUI_URL=http://moqui-server:80
+      - SQLITE_PATH=/data/source_records.db
+      - HMAC_SECRET=${HMAC_SECRET:-}
+      - GROWERP_API_KEY=${GROWERP_API_KEY:-}
+      - OWNER_PARTY_ID=BLAH_SOFT_OWNER
+      - LOG_LEVEL=INFO
+      - TZ=America/Belem
+    depends_on:
+      - moqui-server

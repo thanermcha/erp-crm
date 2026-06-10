@@ -1,12 +1,12 @@
+version: "3.8"
 services:
-  moqui-server:
+  webhook-server:
     networks:
-      default:
-      openclaw-lan:
-        aliases:
-          - growerp-backend
+      - meta-agency-stack_meta_net
+      - openclaw-lan
 
 networks:
+  meta-agency-stack_meta_net:
+    external: true
   openclaw-lan:
     external: true
-    name: openclaw-ai_openclaw-lan
